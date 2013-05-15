@@ -67,7 +67,7 @@
                         columns.Bound(p => p.Origin).Title("Origin").Filterable(false).Visible(Model.Customer.OrderDetailOriginVisible);
                         columns.Bound(p => p.Units).Title("Units").Filterable(false);
                         columns.Bound(p => p.UnitWeight).Title("Unit Weight").Filterable(false);
-                        columns.Bound(p => p.NetWeight).Title("Net Wt").Filterable(false).ClientTemplate("<span style=\"color:green;\">#= NetWeight #</span>");
+                        columns.Bound(p => p.NetWeight).Title("Net Wt").Filterable(false);
                         columns.Bound(p => p.PricePerUnitOfWeight).Title("Price").ClientTemplate("#= kendo.toString(PricePerUnitOfWeight, 'c2') #").Filterable(false);
                         columns.Bound(p => p.TotalAmount).Title("Amount").ClientTemplate("#= kendo.toString(TotalAmount, 'c2') #");
                         columns.Command(command => { command.Edit(); command.Destroy(); });
