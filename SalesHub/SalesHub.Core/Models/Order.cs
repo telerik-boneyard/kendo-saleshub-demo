@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SalesHub.Core.Models
@@ -34,5 +35,7 @@ namespace SalesHub.Core.Models
         public string InvoiceComments { get; set; }
         public string HeaderComments { get; set; }
         public string FooterComments { get; set; }
+
+        public virtual IList<OrderDetail> OrderDetails { get; set; }
     }
 }
