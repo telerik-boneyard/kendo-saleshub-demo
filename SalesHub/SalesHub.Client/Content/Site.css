@@ -641,9 +641,9 @@ input[type="submit"]:hover, input[type="button"]:hover {
     margin: .5em 0;
 }
 
-.k-panelbar .k-content {
-    padding: 1%;
-}
+.k-panelbar .k-content { padding: 1%; }
+
+.k-panelbar .k-textbox { width: 100%; }
 
 /* Tabstrip */
 
