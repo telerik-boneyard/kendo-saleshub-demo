@@ -122,9 +122,7 @@
             @Html.PartialFor("_OrderPaymentTerm", m => m.PaymentTerm1)
             @Html.PartialFor("_OrderPaymentTerm", m => m.PaymentTerm2)
             <div>
-                
-                @Html.LabelFor(m => m.PaymentTermsOverride):
-                <br />
+                @Html.LabelFor(m => m.PaymentTermsOverride, "Payment Term Override:")
                 @Html.TextAreaFor(m => m.PaymentTermsOverride)
 
                 <input type="button" value="Suggested Value" id="suggestedValueButton" />
@@ -151,19 +149,19 @@
             Comments
             <div>
                 <div>
-                    @Html.LabelFor(m => m.IntentComments, "Intent Comments")
+                    @Html.LabelFor(m => m.IntentComments, "Intent Comments:")
                     @Html.TextAreaFor(m => m.IntentComments, new { @class = "k-textbox" })
                 </div>
                 <div>
-                    @Html.LabelFor(m => m.IntentComments, "Invoice Comments")
+                    @Html.LabelFor(m => m.IntentComments, "Invoice Comments:")
                     @Html.TextAreaFor(m => m.InvoiceComments, new { @class = "k-textbox" })
                 </div>
                 <div>
-                    @Html.LabelFor(m => m.HeaderComments, "Header Comments")
+                    @Html.LabelFor(m => m.HeaderComments, "Header Comments:")
                     @Html.TextAreaFor(m => m.HeaderComments, new { @class = "k-textbox" })
                 </div>
                 <div>
-                    @Html.LabelFor(m => m.FooterComments, "Footer Comments")
+                    @Html.LabelFor(m => m.FooterComments, "Footer Comments:")
                     @Html.TextAreaFor(m => m.FooterComments, new { @class = "k-textbox" })
                 </div>
             </div>

@@ -629,22 +629,22 @@ input[type="submit"]:hover, input[type="button"]:hover {
     border-color: #64908A;
 }
 
-#detailLinesTabStrip .k-state-active {
-    border-color: #424254;
-}
-
 #suggestedValuesGrid td {
     cursor: pointer;
 }
 
 /* Panelbar */
 
-/* Tabstrip */
-
-.k-tabstrip {
-
+.k-panelbar label {
+    display: block;
+    font-weight: bold;
 }
 
+/* Tabstrip */
+
+.k-tabstrip .k-state-active {
+    border-color: #CC2A41;
+}
 
 /* Footer */
 

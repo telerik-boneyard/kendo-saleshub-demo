@@ -35,7 +35,7 @@
     <body>
         <header>
             <h1><a href="@Url.RouteUrl("Default", new { controller = "Home", action = "Index" })">SalesHub</a></h1>
-            <div class="sub-heading">
+            <div class="sub-heading clearfix">
                 <h2 data-bind="html: customerHierarchicalText"></h2>
 
                 @(Html.Kendo().AutoComplete().Name("search")
