@@ -74,9 +74,6 @@ html {
     -webkit-text-size-adjust: 100%; /* 4 */
 }
 
-/* apply a natural box layout model to all elements */
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-
 
 /* ==========================================================================
    Links
@@ -464,7 +461,6 @@ header h1 a {
 
 .sub-heading {
     color: #fff;
-    padding: 1%;
     width: 80%;
     margin: 0 auto;
     background: #424254;
@@ -472,8 +468,10 @@ header h1 a {
 }
     .sub-heading h2 { 
         margin: 0;
-        display: inline;
+        display: inline-block;
+        padding: 1%;
     }
+    .sub-heading .k-widget { margin: 1%; }
 
 header .title-search {
     padding: 10px;
@@ -501,8 +499,8 @@ header .sub-heading .page-title {
 }
 
 .right-column {
-    float: left;
-    width: 75%;
+    float: right;
+    width: 72%;
 }
 
 /* Content */
