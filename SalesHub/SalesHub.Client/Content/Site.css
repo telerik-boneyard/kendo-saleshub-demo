@@ -638,6 +638,11 @@ input[type="submit"]:hover, input[type="button"]:hover {
 .k-panelbar label {
     display: block;
     font-weight: bold;
+    margin: .5em 0;
+}
+
+.k-panelbar .k-content {
+    padding: 1%;
 }
 
 /* Tabstrip */
