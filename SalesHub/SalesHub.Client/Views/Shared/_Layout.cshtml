@@ -1,0 +1,99 @@
+﻿@using Kendo.Mvc.UI;
+@using SalesHub.Client.Configuration
+@using SalesHub.Client.ViewModels.Client;
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>@ViewBag.Title</title>
+
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="@Url.Content("~/Content/libs/kendo/kendo.common.min.css")" type="text/css" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/libs/kendo/kendo.default.min.css")" type="text/css" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/site.css")" type="text/css" rel="stylesheet" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+
+        <meta name="viewport" content="width=device-width" />
+
+        <script type="text/javascript">
+            window.SalesHub = window.SalesHub || {};
+            window.SalesHub.dataServiceUrl = "@SettingsManager.BaseServiceUrl";
+            window.SalesHub.viewModels = {};
+            window.SalesHub.dataSources = {};
+        </script>
+        
+        <!--[if lt IE 9]>
+        <script src="@Url.Content("~/Scripts/libs/html5shiv.js")"></script>
+        <![endif]-->
+
+        <script src="@Url.Content("~/Scripts/libs/jquery/jquery.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/libs/kendo/kendo.web.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/libs/kendo/kendo.aspnetmvc.min.js")"></script>
+    </head>
+    <body>
+        <header>
+            <h1><a href="@Url.RouteUrl("Default", new { controller = "Home", action = "Index" })">SalesHub</a></h1>
+            <div class="sub-heading">
+                <h2 data-bind="text: customerHierarchicalText"></h2>
+                
+                @(Html.Kendo().AutoComplete().Name("search")
+                    .Filter(FilterType.StartsWith)
+                    .Placeholder("Search for order...")
+                    .Template("<span data-order-id='${ data.OrderId }'>${ data.OrderNumber }</span>")
+                    .MinLength(3)
+                    .DataSource(dataSource => dataSource
+                        .Read(read =>
+                            read.Url("/api/Search/GetAutoCompleteSearchResults").Type(HttpVerbs.Get)
+                        )
+                        .ServerFiltering(true)
+                    )
+                    .DataTextField("OrderNumber")
+                    .Events(events => events.Select("window.SalesHub.SearchBox_Select")))
+            </div>
+        </header>
+        <div id="body" class="content clearfix">
+            @RenderBody()
+        </div>
+
+        @(Html.Kendo().Window()
+            .Name("searchResultWindow")
+            .Title("Search Results")
+            .Modal(true)
+            .Visible(false)
+            .Height(600)
+            .Width(500)
+            .Content(@<text>
+                @(Html.Kendo().Grid<OrderSearchResult>()
+                    .Name("searchResultsGrid")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(c => c.OrderNumber).Title("Order Number");
+                        columns.Bound(c => c.SellingCompany).Title("Selling Co");
+                        columns.Bound(c => c.Customer).Title("Customer");
+                    })
+                    .DataSource(ds => ds.Ajax()
+                        .Read(read => read.Action("GetSearchResults", "Search").Type(HttpVerbs.Get))
+                        .ServerOperation(true)
+                    )
+                    .Selectable()
+                    .Events(events => events.Change("window.SalesHub.SearchResultsGrid_Change"))
+                )
+            </text>)
+            .Events(e => e.Open("window.SalesHub.SearchResultWindow_Open"))
+        )
+
+        <script>
+            window.SalesHub.Search = {
+                settings: {
+                    actionUrl: "/Order/Edit"
+                }
+            };
+        </script>
+        <script src="@Url.Content("~/Scripts/viewModels/headerViewModel.js")"></script>
+        <script src="@Url.Content("~/Scripts/search.js")"></script>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

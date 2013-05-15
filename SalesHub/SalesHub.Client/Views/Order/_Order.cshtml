@@ -1,0 +1,111 @@
+﻿@using System.Web.Mvc.Html;
+@using Kendo.Mvc.UI;
+@using SalesHub.Client.Extensions;
+@using SalesHub.Core.Models;
+
+@model SalesHub.Client.ViewModels.Client.OrderViewModel
+
+<fieldset class="editorder left-column">
+    <div>
+        @Html.LabelFor(m => m.OrderNumber, "Order No:")
+        @Html.TextBoxFor(m => m.OrderNumber, new { @class = "k-textbox" })
+        @Html.ValidationMessageFor(m => m.OrderNumber)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.ContractWeight, "Contract Weight:")
+        @Html.Kendo().NumericTextBoxFor(m => m.ContractWeight).Decimals(2).Min(1).Deferred()
+        @Html.ValidationMessageFor(m => m.ContractWeight)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.OrderDate, "Order Date:")
+        @Html.Kendo().DatePickerFor(m => m.OrderDate).Deferred()
+        @Html.ValidationMessageFor(m => m.OrderDate)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.ContractAmount, "Contract Amount:")
+        @Html.Kendo().NumericTextBoxFor(m => m.ContractAmount).Decimals(2).Min(1).Deferred()
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.IsActive, "Is Active:")
+        @Html.CheckBoxFor(m => m.IsActive)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.UnitOfWeight, "Unit of Weight:")
+        @Html.RadioButtonForEnum(m => m.UnitOfWeight, !Model.IsNew ? new { disabled = true } : null)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.CurrencyTypeId, "Invoicing Currency:")
+        @Html.Kendo().DropDownListFor(m => m.CurrencyTypeId).BindTo(Model.CurrencyTypesSelectList).Deferred()
+    </div>
+</fieldset>
+
+<ul id="panelBar" class="right-column">
+    <li>
+        Payment Terms
+        @Html.PartialFor("_OrderPaymentTerm", m => m.PaymentTerm1)
+        @Html.PartialFor("_OrderPaymentTerm", m => m.PaymentTerm2)
+        <div>
+                
+            @Html.LabelFor(m => m.PaymentTermsOverride):
+            <br />
+            @Html.TextAreaFor(m => m.PaymentTermsOverride)
+
+            <input type="button" value="Suggested Value" id="suggestedValueButton" />
+            @(Html.Kendo().Window()
+                .Name("suggestedValuesWindow")
+                .Visible(false)
+                .Title("Suggested Values")
+                .Width(200)
+                .Modal(true)
+                .Content(@<text>
+                    @(Html.Kendo().Grid<SuggestedValue>()
+                    .Name("suggestedValuesGrid")
+                    .Columns(columns => columns.Bound(c => c.Value))
+                    .BindTo(Model.SuggestedValues)
+                    .DataSource(dataSource => dataSource
+                        .Server()
+                        .Model(model => model.Id(m => m.SuggestedValueId)))
+                    .Selectable()
+                    .Events(events => events.Change("window.SalesHub.SuggestedValuesGrid_Changed")))
+                </text>))
+        </div>
+    </li>
+    <li>
+        Comments
+        <div>
+            <div>
+                @Html.LabelFor(m => m.IntentComments, "Intent Comments")
+                @Html.TextAreaFor(m => m.IntentComments, new { @class = "k-textbox" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.IntentComments, "Invoice Comments")
+                @Html.TextAreaFor(m => m.InvoiceComments, new { @class = "k-textbox" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.HeaderComments, "Header Comments")
+                @Html.TextAreaFor(m => m.HeaderComments, new { @class = "k-textbox" })
+            </div>
+            <div>
+                @Html.LabelFor(m => m.FooterComments, "Footer Comments")
+                @Html.TextAreaFor(m => m.FooterComments, new { @class = "k-textbox" })
+            </div>
+        </div>
+    </li>
+</ul>
+@Html.Kendo().PanelBar().Name("panelBar").Deferred()
+
+@Html.HiddenFor(m => m.OrderId)
+
+<div class="editbuttons">
+    <input type="submit" name="submit" value="Save"/>
+    <input type="button" name="cancel" value="Cancel" class="actionButton" data-action="@(Html.Raw(Url.RouteUrl("Default", new { action = "Index", controller = "Home", customerId = Model.CustomerId }, Request.Url.Scheme)))"/>
+    @if (!Model.IsNew) {
+        <input type="button" name="delete" value="Delete" id="delete"/>
+    }
+</div>

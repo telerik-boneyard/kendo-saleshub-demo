@@ -1,0 +1,40 @@
+﻿@using Kendo.Mvc.UI
+@using SalesHub.Client.ViewModels.Api
+@model SalesHub.Client.ViewModels.Client.CustomerDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@(Html.Kendo().Grid<CustomerOrderViewModel>().Name("ordersGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.OrderNumber).Title("Order Number");
+        columns.Bound(p => p.OrderDate).Title("Order Date").Format("{0:d}");
+        columns.Bound(p => p.IsActive).Title("Status").ClientTemplate("#= IsActive ? 'Active' : 'Inactive' #");
+        columns.Bound(p => p.Weight).Title("Weight").Format("{0:n}");
+        columns.Bound(p => p.Value).Title("Value").Format("{0:c}");
+        columns.Template(model => null)
+            .ClientTemplate("<a href='" + Url.RouteUrl("Default", new { controller = "Order", action = "Edit" }) + "/#= OrderId #'>Edit</a>");
+    })
+    .ToolBar(toolbar => toolbar.Custom().Text("Create Order").Route("Default", new { action = "New", controller = "Order", id = Model.CustomerId} ))
+    .Filterable()
+    .Selectable(settings => settings.Mode(GridSelectionMode.Single))
+    .Pageable(builder => builder.PageSizes(new[] { 20, 30 }))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(builder => builder.Url("/api/CustomerOrders/GetOrdersForCustomer/" + Model.CustomerId).Type(HttpVerbs.Get))
+        .Model(model => model.Id("OrderId"))
+        .ServerOperation(false)
+        .PageSize(20)
+    ))
+
+@section scripts {
+    <script>
+        window.SalesHub.customerData = {
+            customerId: "@Model.CustomerId",
+            customerPath: @Html.Raw(Json.Encode(Model.CustomerPath))
+        };
+    </script>
+    <script src="@Url.Content("~/Scripts/customer.js")"></script>
+}

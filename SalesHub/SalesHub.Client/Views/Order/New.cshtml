@@ -1,0 +1,27 @@
+﻿@using Kendo.Mvc.UI;
+
+@model SalesHub.Client.ViewModels.Client.OrderViewModel
+
+@{
+    ViewBag.Title = "New Order";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.Partial("_Order")
+}
+
+@section scripts
+{
+    <script>
+        window.SalesHub.customerData = {
+            customerId: "@Model.CustomerId",
+            customerPath: "@Html.Raw(Model.CustomerPath)"
+        };
+        @Html.Kendo().DeferredScripts(false);
+    </script>
+    <script src="@Url.Content("~/Scripts/order.js")"></script>
+}
+
