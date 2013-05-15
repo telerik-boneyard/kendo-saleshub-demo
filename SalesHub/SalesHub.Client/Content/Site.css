@@ -647,6 +647,20 @@ input[type="submit"]:hover, input[type="button"]:hover {
 
 /* Tabstrip */
 
+.k-tabstrip {
+    border: 0;
+    padding: 0;
+    background: none;
+    margin: 1% 0;
+}
+
+    .k-tabstrip .k-tabstrip-items { padding: 0; }
+    .k-tabstrip .k-content, .k-panelbar .k-tabstrip .k-content {
+        margin: 0;
+        padding: 0;
+    }
+    .k-tabstrip .k-grid { border-width: 0; }
+
 .k-tabstrip .k-state-active {
     border-color: #CC2A41;
 }
@@ -654,11 +668,40 @@ input[type="submit"]:hover, input[type="button"]:hover {
 /* Footer */
 
 footer {
-    background: none repeat scroll 0 0 #DDDDDD;
-    padding: 2% 0;
+    background: #eee;
+    padding: 5% 0 1%;
 }
     footer ul {
         margin: 0 auto;
         width: 80%;
+        list-style-type: none;
+        padding: 0;
     }
+        footer ul li {
+            padding: 0;
+            text-align: center;
+        }
+    footer h1 {
+        display: inline-block;
+        font-weight: normal;
+        margin: 0 0.3em 0 0;
+        position: relative;
+        top: -0.95em;
+        color: #000;
+    }
+    footer p { 
+        color: #8F8F8F;
+        margin-bottom: .5em;
+    }
+    footer .k-button {
+        background: #424254;
+        border-width: 0;
+        color: #fff;
+        padding: .5em 2em;
+        font-weight: bold;
+    }
+        footer .k-button:hover {
+            background: #CC2A41;
+            color: #fff;
+        }
 
