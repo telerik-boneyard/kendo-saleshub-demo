@@ -17,67 +17,6 @@
         Total Weight: <span id="totalWeightAggregate">0.00</span>
         Total Amount: <span id="totalAmountAggregate">0.00</span>
     </div>
-    <div id="detailLinesTabStrip">
-        <ul>
-            <li  class="k-state-active">Details</li>
-            <li>Notes</li>
-        </ul>
-        <div>
-            @(Html.Kendo().Grid<OrderDetailViewModel>()
-                .Name("orderDetailsGrid")
-                .Columns(columns =>
-                {
-                    columns.Bound(p => p.Origin).Title("Origin").Filterable(false).Visible(Model.Customer.OrderDetailOriginVisible);
-                    columns.Bound(p => p.Units).Title("Units").Filterable(false);
-                    columns.Bound(p => p.UnitWeight).Title("Unit Weight").Filterable(false);
-                    columns.Bound(p => p.NetWeight).Title("Net Wt").Filterable(false).ClientTemplate("<span style=\"color:green;\">#= NetWeight #</span>");
-                    columns.Bound(p => p.PricePerUnitOfWeight).Title("Price").ClientTemplate("#= kendo.toString(PricePerUnitOfWeight, 'c2') #").Filterable(false);
-                    columns.Bound(p => p.TotalAmount).Title("Amount").ClientTemplate("#= kendo.toString(TotalAmount, 'c2') #");
-                    columns.Command(command => { command.Edit(); command.Destroy(); });
-                })
-                .Filterable()
-                .ToolBar(toolbar => toolbar.Create())
-                .Editable(editable => editable.Mode(GridEditMode.PopUp))
-                .Selectable(settings => settings.Mode(GridSelectionMode.Single))
-                .Events(events => events.Save("window.SalesHub.OrderDetailsGrid_Save"))
-                .DataSource(dataSource => dataSource
-                    .Ajax()
-                    .Read(builder => builder.Url("/api/CustomerOrderDetails/GetOrderDetails/" + Model.OrderId).Type(HttpVerbs.Get))
-                    .Create(builder => builder.Url("/api/CustomerOrderDetails/CreateOrderDetail/" + Model.OrderId).Type(HttpVerbs.Put))
-                    .Update(builder => builder.Url("/api/CustomerOrderDetails/UpdateOrderDetail").Type(HttpVerbs.Post))
-                    .Destroy(builder => builder.Url("/api/CustomerOrderDetails/DeleteOrderDetail").Type(HttpVerbs.Delete))
-                    .Model(model => {
-                        model.Id(x => x.OrderDetailId);
-                        model.Field(m => m.OrderDetailId).DefaultValue(0);
-                    })
-                    .Events(events =>  events.Error("window.SalesHub.OrderDetails_Error").Change("window.SalesHub.OrderDetails_Change"))
-                    .ServerOperation(false)
-                    .Aggregates(a => a.Add(x => x.Units).Sum())
-                    .Aggregates(a => a.Add(x => x.NetWeight).Sum())
-                    .Aggregates(a => a.Add(x => x.TotalAmount).Sum())
-                ).Deferred())
-        </div>
-        <div>
-            @(Html.Kendo().Grid<OrderNoteViewModel>()
-                .Name("orderNotesGrid")
-                .Columns(columns =>
-                {
-                    columns.Bound(p => p.PostedDate).Title("Date").ClientTemplate("#= kendo.toString(PostedDate, 'G') #");
-                    columns.Bound(p => p.Author).Title("Author");
-                    columns.Bound(p => p.Note).Title("Note");
-                })
-                .Editable(editable => editable.Mode(GridEditMode.PopUp))
-                .ToolBar(toolbar => toolbar.Create())
-                .DataSource(dataSource => dataSource
-                    .Ajax()
-                    .Read(builder => builder.Url("/api/OrderNotes/GetOrderNotesForOrder/" + Model.OrderId).Type(HttpVerbs.Get))
-                    .Create(builder => builder.Url("/api/OrderNotes/CreateOrderNote/" + Model.OrderId).Type(HttpVerbs.Put))
-                    .Model(model => model.Id("OrderNoteId"))
-                    .ServerOperation(false)
-                ).Deferred())
-        </div>
-    </div>
-    @Html.Kendo().TabStrip().Name("detailLinesTabStrip").SelectedIndex(0).Deferred()
 }
 
 @using (Html.BeginForm("Delete", "Order", new { id = Model.OrderId }, FormMethod.Post, new { id = "deleteForm" }))

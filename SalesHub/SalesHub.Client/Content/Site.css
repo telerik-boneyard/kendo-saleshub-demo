@@ -401,7 +401,7 @@ body {
     margin: 0 auto;
     font-family: 'Open Sans', sans-serif;
     background: #eee;
-    padding: 0 0 2%;
+    padding: 0;
 }
 
 /* Icon Font*/
@@ -637,5 +637,23 @@ input[type="submit"]:hover, input[type="button"]:hover {
     cursor: pointer;
 }
 
-/* Panelbar styles */
+/* Panelbar */
+
+/* Tabstrip */
+
+.k-tabstrip {
+
+}
+
+
+/* Footer */
+
+footer {
+    background: none repeat scroll 0 0 #DDDDDD;
+    padding: 2% 0;
+}
+    footer ul {
+        margin: 0 auto;
+        width: 80%;
+    }
 
