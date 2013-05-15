@@ -117,7 +117,7 @@
         @Html.Kendo().TabStrip().Name("detailLinesTabStrip").SelectedIndex(0).Deferred()
     }
     <ul id="panelBar">
-        <li class="k-state-active">
+        <li>
             Payment Terms
             @Html.PartialFor("_OrderPaymentTerm", m => m.PaymentTerm1)
             @Html.PartialFor("_OrderPaymentTerm", m => m.PaymentTerm2)
