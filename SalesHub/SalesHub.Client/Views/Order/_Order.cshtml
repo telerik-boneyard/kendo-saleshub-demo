@@ -5,6 +5,11 @@
 
 @model SalesHub.Client.ViewModels.Client.OrderViewModel
 
+@if (Model.SavedSuccessfully)
+{
+    <p class="success">Order saved successfully</p>
+}
+
 <fieldset class="editorder left-column">
     <div>
         @Html.LabelFor(m => m.OrderNumber, "Order No:")

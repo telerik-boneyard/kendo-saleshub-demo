@@ -62,13 +62,14 @@ namespace SalesHub.Client.Controllers
 
             _orderViewDataBuilder.BuildViewData(ViewData, order);
 
+            SetViewModelFields(orderEditViewModel, order.CustomerId);
+
             if (orderEditViewModel.PaymentTerm1.PaymentTerm.SplitPercentage + orderEditViewModel.PaymentTerm2.PaymentTerm.SplitPercentage != 1M)
             {
                 ModelState.AddModelError("", "Split Percentages Must Total 100%");
             }
             if (!ModelState.IsValid)
             {
-                SetViewModelFields(orderEditViewModel, order.CustomerId);
                 return View(orderEditViewModel);
             }
 
@@ -81,7 +82,8 @@ namespace SalesHub.Client.Controllers
 
             _orderRepository.SaveChanges();
 
-            return RedirectToRoute("Default", new { controller = "Order", action = "Edit", id = orderEditViewModel.OrderId });
+            orderEditViewModel.SavedSuccessfully = true;
+            return View(orderEditViewModel);
         }
 
         public ActionResult New(int id)
@@ -122,10 +124,12 @@ namespace SalesHub.Client.Controllers
             CopyOrderViewModelToOrder(orderViewModel, order);
             order.CustomerId = customer.CustomerId;
 
+            orderViewModel.SavedSuccessfully = true;
+
             _orderRepository.Add(order);
             _orderRepository.SaveChanges();
 
-            return RedirectToRoute("Default", new { action = "Edit", controller = "Order", id = order.OrderId });
+            return View("Edit", orderViewModel);
         }
 
         [HttpPost]

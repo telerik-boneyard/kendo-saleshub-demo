@@ -52,5 +52,7 @@ namespace SalesHub.Client.ViewModels.Client
         public string FooterComments { get; set; }
 
         public Customer Customer { get; set; }
+
+        public bool SavedSuccessfully { get; set; }
     }
 }
