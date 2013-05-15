@@ -518,17 +518,21 @@ header .sub-heading .page-title {
     }
 
 .field-validation-error, .validation-summary-errors, .k-edit-form-container ul.errors {
-    color: red;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 700;
-    padding-left: 8px;
-    }
+    background: #CC2A41;
+    color: #fff;
+}
 
 .validation-summary-errors ul, .k-edit-form-container ul.errors, .k-edit-form-container ul.errors ul {
     list-style: none;
-    padding-left: 18px;
+    margin: 0;
+    padding: 0;
 }
+    .validation-summary-errors ul li, .k-edit-form-container ul.errors li, .k-edit-form-container ul.errors ul li {
+        padding: 1%;
+    }
 
 .search-icon {
     background: #fff url('../images/search.png') no-repeat 100% 0;
@@ -560,8 +564,8 @@ header .sub-heading .page-title {
 
 /* Detail Grid*/
 
-    .customer-grid a { color: #CC2A41; }
-    .customer-grid .k-state-selected a { color: #fff; }
+    .customer-grid .k-selectable a { color: #CC2A41; }
+    .customer-grid .k-selectable .k-state-selected a { color: #fff; }
 
 .k-pager-wrap, .k-grid-header {
     background-image: none;
@@ -629,24 +633,9 @@ input[type="submit"]:hover, input[type="button"]:hover {
     border-color: #424254;
 }
 
-/*
-#suggestedValueButton {
-    display: block;
-    padding: 8px;
-    font-family: 'Open Sans', sans-serif;
-    cursor: pointer;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border: none;
-}
-
-    #suggestedValueButton:hover {
-        background-color: #CC2A41;
-        color: #fff;
-    }
-*/
-
 #suggestedValuesGrid td {
     cursor: pointer;
 }
+
+/* Panelbar styles */
+
