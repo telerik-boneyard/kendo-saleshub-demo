@@ -31,21 +31,6 @@ window.SalesHub.OrderDetails_Error = function (args) {
     }
 };
 
-window.SalesHub.OrderDetails_Change = function() {
-    var orderDetailsGrid = $("#orderDetailsGrid").data("kendoGrid");
-    var aggregates = orderDetailsGrid.dataSource.aggregates();
-
-    if (aggregates.Units) {
-        $("#unitsAggregate").text(aggregates.Units.sum);
-    }
-    if (aggregates.NetWeight) {
-        $("#totalWeightAggregate").text(kendo.toString(aggregates.NetWeight.sum, 'n'));
-    }
-    if (aggregates.TotalAmount) {
-        $("#totalAmountAggregate").text(kendo.toString(aggregates.TotalAmount.sum, 'n'));
-    }
-};
-
 window.SalesHub.SuggestedValuesGrid_Changed = function (e) {
     var selectedRow = this.select()[0];
 

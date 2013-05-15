@@ -1,5 +1,4 @@
 ﻿@using Kendo.Mvc.UI
-@using SalesHub.Client.ViewModels.Api;
 
 @model SalesHub.Client.ViewModels.Client.OrderViewModel
 @{
@@ -11,12 +10,6 @@
     @Html.ValidationSummary(true)
 
     @Html.Partial("_Order")
-
-    <div class="units-aggregate">
-        Units: <span id="unitsAggregate">0</span>
-        Total Weight: <span id="totalWeightAggregate">0.00</span>
-        Total Amount: <span id="totalAmountAggregate">0.00</span>
-    </div>
 }
 
 @using (Html.BeginForm("Delete", "Order", new { id = Model.OrderId }, FormMethod.Post, new { id = "deleteForm" }))
