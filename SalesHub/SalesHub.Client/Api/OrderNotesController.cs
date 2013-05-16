@@ -52,6 +52,8 @@ namespace SalesHub.Client.Api
             _orderNotesRepository.Add(orderNote);
             _orderNotesRepository.SaveChanges();
 
+            orderNoteViewModel.OrderNoteId = orderNote.OrderNoteId;
+
             var resultData = new[] {orderNoteViewModel};
             return Json(resultData.AsQueryable().ToDataSourceResult(dataSourceRequest));
         }

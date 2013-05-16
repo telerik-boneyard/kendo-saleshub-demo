@@ -109,7 +109,11 @@
                         .Ajax()
                         .Read(builder => builder.Url("/api/OrderNotes/GetOrderNotesForOrder/" + Model.OrderId).Type(HttpVerbs.Get))
                         .Create(builder => builder.Url("/api/OrderNotes/CreateOrderNote/" + Model.OrderId).Type(HttpVerbs.Put))
-                        .Model(model => model.Id("OrderNoteId"))
+                        .Model(model =>
+                        {
+                            model.Id("OrderNoteId");
+                            model.Field(m => m.OrderNoteId).DefaultValue(0);
+                        })
                         .ServerOperation(false)
                     ).Deferred())
             </div>
