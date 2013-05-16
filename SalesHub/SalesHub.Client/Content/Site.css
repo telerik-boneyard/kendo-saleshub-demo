@@ -517,7 +517,7 @@ header .sub-heading .page-title {
         border-color:#CC2A41;
     }
 
-.field-validation-error, .validation-summary-errors, .k-edit-form-container ul.errors {
+.field-validation-error, .validation-summary-errors, .k-edit-form-container ul.errors, .success {
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 700;
@@ -525,14 +525,18 @@ header .sub-heading .page-title {
     color: #fff;
 }
 
-.validation-summary-errors ul, .k-edit-form-container ul.errors, .k-edit-form-container ul.errors ul {
+.validation-summary-errors ul, .k-edit-form-container ul.errors, .k-edit-form-container ul.errors ul, .success {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-    .validation-summary-errors ul li, .k-edit-form-container ul.errors li, .k-edit-form-container ul.errors ul li {
+    .validation-summary-errors ul li, .k-edit-form-container ul.errors li, .k-edit-form-container ul.errors ul li, .success {
         padding: 1%;
     }
+
+.success {
+    background: #64908A;
+}
 
 .search-icon {
     background: #fff url('../images/search.png') no-repeat 100% 0;
