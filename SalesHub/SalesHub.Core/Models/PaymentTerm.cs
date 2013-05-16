@@ -17,6 +17,7 @@ namespace SalesHub.Core.Models
 
         [DisplayName("Payment Terms")]
         public virtual PaymentTermType PaymentTermType { get; set; }
+        public int PaymentTermTypeId { get; set; }
 
         [DisplayName("Credit Terms")]
         public int CreditTerms { get; set; }

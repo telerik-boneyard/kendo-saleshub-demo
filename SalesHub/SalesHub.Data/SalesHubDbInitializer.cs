@@ -48,6 +48,9 @@ namespace SalesHub.Data
 
             GeneratePackageTypes(context);
             GeneratePaymentTermTypes(context);
+
+            context.SaveChanges();
+
             GenerateCustomersForCompany(sellingCompany, context);
 
             context.SaveChanges();
@@ -102,16 +105,6 @@ namespace SalesHub.Data
                 "Let's Stop N Shop",
                 "LILA-Supermercado",
                 "LINO-Delicateses",
-                "Lonesome Pine Restaurant",
-                "Magazzini Alimentari Riuniti",
-                "Maison Dewey",
-                "Mère Paillarde",
-                "Morgenstern Gesundkost",
-                "North/South",
-                "Rancho grande",
-                "Rattlesnake Canyon Grocery",
-                "Reggiani Caseifici",
-                "Ricardo Adocicados",
                 "Richter Supermarkt",
                 "Romero y tomillo",
                 "Santé Gourmet",
@@ -150,12 +143,21 @@ namespace SalesHub.Data
 
             for (int i = 0; i < orderCount; ++i)
             {
+                var paymentTerm = new PaymentTerm
+                {
+                    SplitPercentage = 1m,
+                    PaymentTermType = context.PaymentTermTypes.First()
+                };
+
+                context.PaymentTerms.Add(paymentTerm);
+
                 var order = new Order
                 {
                     ContractAmount = _random.Next(100, 1000000),
                     ContractWeight = _random.Next(10, 1000000),
                     ContractCurrencyTypeId = 0,
                     Customer = customer,
+                    PaymentTerm1 = paymentTerm,
                     IsActive = true,
                     OrderDate = DateTime.Today,
                     OrderNumber = "Order - " + i,
