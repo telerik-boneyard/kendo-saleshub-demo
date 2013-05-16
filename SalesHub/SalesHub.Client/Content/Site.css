@@ -647,7 +647,10 @@ input[type="submit"]:hover, input[type="button"]:hover {
 
 .k-panelbar .k-content { padding: 1%; }
 
-.k-panelbar .k-textbox { width: 100%; }
+.k-panelbar .k-textbox { 
+    width: 100%;
+    max-width: 100%;
+}
 
 /* Tabstrip */
 

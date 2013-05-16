@@ -127,7 +127,7 @@
             @Html.PartialFor("_OrderPaymentTerm", m => m.PaymentTerm2)
             <div>
                 @Html.LabelFor(m => m.PaymentTermsOverride, "Payment Term Override:")
-                @Html.TextAreaFor(m => m.PaymentTermsOverride)
+                @Html.TextAreaFor(m => m.PaymentTermsOverride, new { @class = "k-textbox" })
 
                 <input type="button" value="Suggested Value" id="suggestedValueButton" />
                 @(Html.Kendo().Window()
