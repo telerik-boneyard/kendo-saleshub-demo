@@ -75,11 +75,6 @@ namespace SalesHub.Client.Controllers
 
             CopyOrderViewModelToOrder(orderEditViewModel, order);
 
-            orderEditViewModel.PaymentTerm1.PaymentTerm.PaymentTermId = order.PaymentTerm1 != null ? order.PaymentTerm1.PaymentTermId : 0;
-            orderEditViewModel.PaymentTerm2.PaymentTerm.PaymentTermId = order.PaymentTerm2 != null ? order.PaymentTerm2.PaymentTermId : 0;
-            order.PaymentTerm1 = _paymentTermProcessor.ProcessPaymentTerm(orderEditViewModel.PaymentTerm1.PaymentTerm);
-            order.PaymentTerm2 = _paymentTermProcessor.ProcessPaymentTerm(orderEditViewModel.PaymentTerm2.PaymentTerm);
-
             _orderRepository.SaveChanges();
 
             orderEditViewModel.SavedSuccessfully = true;
@@ -124,12 +119,17 @@ namespace SalesHub.Client.Controllers
             CopyOrderViewModelToOrder(orderViewModel, order);
             order.CustomerId = customer.CustomerId;
 
+            orderViewModel.PaymentTerm1.PaymentTerm.PaymentTermId = order.PaymentTerm1 != null ? order.PaymentTerm1.PaymentTermId : 0;
+            orderViewModel.PaymentTerm2.PaymentTerm.PaymentTermId = order.PaymentTerm2 != null ? order.PaymentTerm2.PaymentTermId : 0;
+            order.PaymentTerm1 = _paymentTermProcessor.ProcessPaymentTerm(orderViewModel.PaymentTerm1.PaymentTerm);
+            order.PaymentTerm2 = _paymentTermProcessor.ProcessPaymentTerm(orderViewModel.PaymentTerm2.PaymentTerm);
+
             orderViewModel.SavedSuccessfully = true;
 
             _orderRepository.Add(order);
             _orderRepository.SaveChanges();
 
-            return View("Edit", orderViewModel);
+            return RedirectToAction("Edit", new {id = order.OrderId});
         }
 
         [HttpPost]
