@@ -1,7 +1,6 @@
 ﻿@using System.Collections
 @using Kendo.Mvc.UI;
 @using SalesHub.Client.ViewModels.Api;
-@using SalesHub.Core.Models
 
 @model OrderDetailViewModel
 
@@ -9,20 +8,13 @@
 
 @Html.HiddenFor(model => model.OrderDetailId)
 
-@if (((Customer) ViewData["Customer"]).OrderDetailOriginVisible)
-{
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Origin)
-    </div>
-    <div class="editor-field">
-        @Html.Kendo().DropDownListFor(m => m.Origin).BindTo((System.Collections.IEnumerable) ViewData["Origins"]).DataTextField("Name").DataValueField("Value").OptionLabel("Select an Origin")
-        @Html.ValidationMessageFor(model => model.Origin)
-    </div>
-}
-else
-{
-    @Html.HiddenFor(m => m.Origin)
-}
+<div class="editor-label">
+    @Html.LabelFor(model => model.Origin)
+</div>
+<div class="editor-field">
+    @Html.Kendo().DropDownListFor(m => m.Origin).BindTo((System.Collections.IEnumerable) ViewData["Origins"]).DataTextField("Name").DataValueField("Value").OptionLabel("Select an Origin")
+    @Html.ValidationMessageFor(model => model.Origin)
+</div>
 
 <div class="editor-label">
     @Html.LabelFor(model => model.PackageTypeId, "Package Type")

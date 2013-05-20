@@ -64,7 +64,7 @@
                     .Name("orderDetailsGrid")
                     .Columns(columns =>
                     {
-                        columns.Bound(p => p.Origin).Title("Origin").Filterable(false).Visible(Model.Customer.OrderDetailOriginVisible);
+                        columns.Bound(p => p.Origin).Title("Origin").Filterable(false);
                         columns.Bound(p => p.Units).Title("Units").Filterable(false).ClientFooterTemplate("Total units: #= sum #");
                         columns.Bound(p => p.UnitWeight).Title("Unit Weight").Filterable(false);
                         columns.Bound(p => p.NetWeight).Title("Net Wt").Filterable(false).ClientFooterTemplate("Total weight: #= kendo.toString(sum, 'n') #");

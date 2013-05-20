@@ -127,8 +127,7 @@ namespace SalesHub.Data
                     {
                         CustomerName = customerName,
                         SellingCompany = sellingCompany,
-                        Orders = new List<Order>(),
-                        OrderDetailOriginVisible = _random.Next() % 2 == 0
+                        Orders = new List<Order>()
                     };
 
                 context.Customers.Add(customer);

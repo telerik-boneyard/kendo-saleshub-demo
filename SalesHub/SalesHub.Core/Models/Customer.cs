@@ -8,8 +8,6 @@ namespace SalesHub.Core.Models
 
         public string CustomerName { get; set; }
 
-        public bool OrderDetailOriginVisible { get; set; }
-
         public virtual SellingCompany SellingCompany { get; set; }
         public virtual IList<Order> Orders { get; set; }
     }
