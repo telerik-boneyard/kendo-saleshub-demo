@@ -39,12 +39,9 @@ window.SalesHub.SuggestedValuesGrid_Changed = function (e) {
 };
 
 $(document).ready(function () {
-    var viewModels = window.SalesHub.viewModels;
     var customerData = window.SalesHub.customerData;
 
-    kendo.bind($("header"), viewModels.headerViewModel);
-
-    viewModels.headerViewModel.updateSelectedCustomer(customerData.customerId, customerData.customerPath);
+    window.SalesHub.setCustomerPath(customerData.customerPath);
 
     $(".actionButton").on("click", function (e) {
         window.location.href = $(e.target).data("action");

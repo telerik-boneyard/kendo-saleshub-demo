@@ -36,7 +36,7 @@
         <header>
             <h1><a href="@Url.RouteUrl("Default", new { controller = "Home", action = "Index" })">SalesHub</a></h1>
             <div class="sub-heading clearfix">
-                <h2 data-bind="html: customerHierarchicalText"></h2>
+                <h2 class="customerPath"></h2>
 
                 @(Html.Kendo().AutoComplete().Name("search")
                     .Filter(FilterType.StartsWith)
@@ -110,8 +110,8 @@
                 }
             };
         </script>
-        <script src="@Url.Content("~/Scripts/viewModels/headerViewModel.js")"></script>
         <script src="@Url.Content("~/Scripts/search.js")"></script>
+        <script src="@Url.Content("~/Scripts/header.js")"></script>
 
         @RenderSection("scripts", required: false)
     </body>

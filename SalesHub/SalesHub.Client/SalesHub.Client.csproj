@@ -267,6 +267,7 @@
     <Content Include="Images\search.png" />
     <Content Include="Images\telerik-logo.png" />
     <Content Include="Scripts\customer.js" />
+    <Content Include="Scripts\header.js" />
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -280,8 +281,6 @@
     <Content Include="Scripts\libs\kendo\kendo.web.min.js" />
     <Content Include="Scripts\order.js" />
     <Content Include="Scripts\search.js" />
-    <Content Include="Scripts\viewModels\customerViewModel.js" />
-    <Content Include="Scripts\viewModels\headerViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -25,17 +25,14 @@
         var dataItem = e.sender.dataItem(e.node);
 
         if (!dataItem.hasChildren) {
-            window.SalesHub.viewModels.headerViewModel.updateSelectedCustomer(node.data("customer-id"), node.data("path"));
+            window.SalesHub.setCustomerPath(node.data("path"));
             updateGridCustomerFilter(node.data("customer-id"));
         }
     };
 
     $(document).ready(function() {
         var selectedCustomerLi, treeView;
-        var headerViewModel = window.SalesHub.viewModels.headerViewModel;
         var queryStringParams;
-
-        kendo.bind($("header"), headerViewModel);
 
         queryStringParams = getUrlParams();
 
@@ -51,7 +48,9 @@
         });
         treeView.select(selectedCustomerLi);
         treeView.expand(selectedCustomerLi.parent());
-        headerViewModel.updateSelectedCustomer(selectedCustomerLi.data("customer-id"), selectedCustomerLi.data("path"));
+
+        window.SalesHub.setCustomerPath(selectedCustomerLi.data("path"));
+
         updateGridCustomerFilter(selectedCustomerLi.data("customer-id"));
     });
 })();
