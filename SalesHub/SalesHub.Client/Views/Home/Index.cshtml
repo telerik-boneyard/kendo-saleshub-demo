@@ -25,14 +25,14 @@
 }
 
 <div class="left-column">
-    @(Html.Kendo().TreeView().Name("customerTreeView").BindTo(Model.TreeViewRoot.Items, mapping => mapping
-        .For<SellingCompanyTreeViewItem>(binding => binding
-            .Children(c => c.Items)
-            .ItemDataBound((item, c) => {
-                item.Text = c.Text;
-                item.Expanded = c.Expanded;
+    @(Html.Kendo().TreeView().Name("customerTreeView").BindTo(Model.TreeViewRoot.Items, binding => binding
+        .For<SellingCompanyTreeViewItem>(mapping => mapping
+            .Children(sellingCompanyTreeViewItem => sellingCompanyTreeViewItem.Items)
+            .ItemDataBound((item, sellingCompanyTreeViewItem) => {
+                item.Text = sellingCompanyTreeViewItem.Text;
+                item.Expanded = sellingCompanyTreeViewItem.Expanded;
 
-                var attributes = BuildAttributesForItem(c);
+                var attributes = BuildAttributesForItem(sellingCompanyTreeViewItem);
                 foreach (var attr in attributes)
                 {
                     item.HtmlAttributes.Add(attr);
