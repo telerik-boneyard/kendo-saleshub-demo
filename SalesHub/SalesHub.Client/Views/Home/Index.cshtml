@@ -25,7 +25,7 @@
 }
 
 <div class="left-column">
-    @Html.Kendo().TreeView().Name("customerTreeView").BindTo(Model.TreeViewRoot.Items, mapping => mapping
+    @(Html.Kendo().TreeView().Name("customerTreeView").BindTo(Model.TreeViewRoot.Items, mapping => mapping
         .For<SellingCompanyTreeViewItem>(binding => binding
             .Children(c => c.Items)
             .ItemDataBound((item, c) => {
@@ -39,6 +39,7 @@
                 }
             })
         ))
+        .Events(events => events.Select("window.SalesHub.CustomerTreeView_Select")))
 </div>
 
 <div class="customer-grid right-column">
