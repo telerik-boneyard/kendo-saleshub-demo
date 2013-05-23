@@ -20,7 +20,7 @@ namespace SalesHub.Client.Api
         {
             var orders = _orderRepository.GetAllOrders();
 
-            return Json(orders.ToDataSourceResult(request, o => new CustomerOrderViewModel
+            DataSourceResult response = orders.ToDataSourceResult(request, o => new CustomerOrderViewModel
             {
                 IsActive = o.IsActive,
                 OrderDate = o.OrderDate,
@@ -28,7 +28,8 @@ namespace SalesHub.Client.Api
                 OrderNumber = o.OrderNumber,
                 Value = o.ContractAmount,
                 Weight = o.ContractWeight
-            }), JsonRequestBehavior.AllowGet);
+            }); 
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
     }
 }
