@@ -27,10 +27,4 @@ $(document).ready(function () {
             $("#searchResultWindow").data("kendoWindow").center().open();
         }
     });
-
-    search.data("kendoAutoComplete").one("open", function (e) {
-        setTimeout(function () {
-            e.sender.popup.wrapper.addClass("search-drop-down");
-        }, 0);
-    });
 });
