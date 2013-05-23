@@ -27,6 +27,7 @@
         if (!dataItem.hasChildren) {
             window.SalesHub.setCustomerPath(node.data("path"));
             updateGridCustomerFilter(node.data("customer-id"));
+            window.SalesHub.selectedCustomerId = node.data("customer-id");
         }
     };
 
@@ -44,7 +45,7 @@
         treeView = $("#customerTreeView").data("kendoTreeView");
 
         $("#createOrderButton").on("click", function() {
-            window.location.href = window.SalesHub.createOrderUrl + '/' + headerViewModel.selectedCustomerId;
+            window.location.href = window.SalesHub.createOrderUrl + '/' + window.SalesHub.selectedCustomerId;
         });
         treeView.select(selectedCustomerLi);
         treeView.expand(selectedCustomerLi.parent());
@@ -52,5 +53,6 @@
         window.SalesHub.setCustomerPath(selectedCustomerLi.data("path"));
 
         updateGridCustomerFilter(selectedCustomerLi.data("customer-id"));
+        window.SalesHub.selectedCustomerId = selectedCustomerLi.data("customer-id");
     });
 })();
