@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using SalesHub.Client.ViewModels.Api;
+using SalesHub.Core.Models;
 using SalesHub.Core.Repositories;
 
 namespace SalesHub.Client.Api
@@ -18,7 +20,7 @@ namespace SalesHub.Client.Api
 
         public JsonResult GetOrdersForCustomer([DataSourceRequest] DataSourceRequest request)
         {
-            var orders = _orderRepository.GetAllOrders();
+            IQueryable<Order> orders = _orderRepository.GetAllOrders();
 
             DataSourceResult response = orders.ToDataSourceResult(request, o => new CustomerOrderViewModel
             {
