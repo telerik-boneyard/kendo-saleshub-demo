@@ -16,7 +16,7 @@ namespace SalesHub.Client.Api
             _orderRepository = orderRepository;
         }
 
-        public JsonResult GetOrdersForCustomer(int? id, [DataSourceRequest] DataSourceRequest dataSourceRequest)
+        public JsonResult GetOrdersForCustomer([DataSourceRequest] DataSourceRequest dataSourceRequest)
         {
             var orders = _orderRepository.GetAllOrders();
 
