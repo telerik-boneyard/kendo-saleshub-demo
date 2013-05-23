@@ -16,11 +16,11 @@ namespace SalesHub.Client.Api
             _orderRepository = orderRepository;
         }
 
-        public JsonResult GetOrdersForCustomer([DataSourceRequest] DataSourceRequest dataSourceRequest)
+        public JsonResult GetOrdersForCustomer([DataSourceRequest] DataSourceRequest request)
         {
             var orders = _orderRepository.GetAllOrders();
 
-            return Json(orders.ToDataSourceResult(dataSourceRequest, o => new CustomerOrderViewModel
+            return Json(orders.ToDataSourceResult(request, o => new CustomerOrderViewModel
             {
                 IsActive = o.IsActive,
                 OrderDate = o.OrderDate,
