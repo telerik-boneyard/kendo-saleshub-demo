@@ -18,17 +18,6 @@
 
 @section scripts
 {
-    <script type="text/x-kendo-template" id="orderDetailsValidationMessageTemplate">
-        # if (messages.length) { #
-            <li>#=field#
-                <ul>
-                    # for (var i = 0; i < messages.length; ++i) { #
-                        <li>#= messages[i] #</li>
-                    # } #
-                </ul>
-            </li>
-        # } #
-    </script>
     <script>
         window.SalesHub.customerData = {
             customerId: "@Model.CustomerId",
