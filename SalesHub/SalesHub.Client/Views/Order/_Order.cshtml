@@ -56,7 +56,7 @@
     {
         <div id="detailLinesTabStrip">
             <ul>
-                <li  class="k-state-active">Details</li>
+                <li class="k-state-active">Details</li>
                 <li>Notes</li>
             </ul>
             <div>
@@ -118,7 +118,19 @@
                     ).Deferred())
             </div>
         </div>
-        @Html.Kendo().TabStrip().Name("detailLinesTabStrip").SelectedIndex(0).Deferred()
+        @Html.Kendo().TabStrip().Name("detailLinesTabStrip").Deferred()
+
+        <script type="text/x-kendo-template" id="orderDetailsValidationMessageTemplate">
+            # if (messages.length) { #
+                <li>#=field#
+                    <ul>
+                        # for (var i = 0; i < messages.length; ++i) { #
+                            <li>#= messages[i] #</li>
+                        # } #
+                    </ul>
+                </li>
+            # } #
+        </script>
     }
     <ul id="panelBar">
         <li>
