@@ -87,7 +87,7 @@
                             model.Id(x => x.OrderDetailId);
                             model.Field(m => m.OrderDetailId).DefaultValue(0);
                         })
-                        .Events(events =>  events.Error("window.SalesHub.OrderDetails_Error").Change("window.SalesHub.OrderDetails_Change"))
+                        .Events(events =>  events.Error("window.SalesHub.OrderDetails_Error"))
                         .ServerOperation(false)
                         .Aggregates(a => a.Add(x => x.Units).Sum())
                         .Aggregates(a => a.Add(x => x.NetWeight).Sum())
