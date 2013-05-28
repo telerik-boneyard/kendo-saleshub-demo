@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SalesHub.Core.Models;
 using SalesHub.Core.Repositories;
@@ -12,10 +11,10 @@ namespace SalesHub.Data.Repositories
         {
             return new List<SuggestedValue> {
                 new SuggestedValue {
-                    Value = "Suggested Value 1"
+                    Value = "Cash against documents"
                 },
                 new SuggestedValue {
-                    Value = "Suggested Value 2"
+                    Value = "Cash against documents, payment immediate"
                 }
             }.AsQueryable();
         }
