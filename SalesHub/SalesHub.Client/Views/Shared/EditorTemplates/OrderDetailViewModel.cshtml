@@ -44,7 +44,7 @@
     @Html.LabelFor(model => model.Units)
 </div>
 <div class="editor-field">
-    @Html.Kendo().NumericTextBoxFor(model => model.Units).Format("n0").Events(events => events.Change("window.SalesHub.OrderDetailsEdit_UnitWeight_Change"))
+    @Html.Kendo().NumericTextBoxFor(model => model.Units).Format("n0").Events(events => events.Change("window.SalesHub.OrderDetailsEdit_Units_Change"))
     @Html.ValidationMessageFor(model => model.Units)
 </div>
 
