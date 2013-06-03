@@ -201,6 +201,7 @@
     <Compile Include="Builders\OrderViewModelSelectListBuilder.cs" />
     <Compile Include="Builders\PackageTypeSelectListBuilder.cs" />
     <Compile Include="Builders\SplitPercentagesSelectListBuilder.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Converters\IConverter.cs" />
     <Compile Include="Extensions\SelectListItemExtensions.cs" />
     <Compile Include="Converters\OrderViewModelConverter.cs" />
@@ -303,9 +304,11 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Shared\EditorTemplates\OrderNoteViewModel.cshtml" />
+    <Content Include="Views\Maintenance\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
