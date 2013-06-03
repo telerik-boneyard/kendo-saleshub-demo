@@ -37,20 +37,23 @@
             <h1><a href="@Url.RouteUrl("Default", new { controller = "Home", action = "Index" })">SalesHub</a></h1>
             <div class="sub-heading clearfix">
                 <h2 class="customerPath"></h2>
-
-                @(Html.Kendo().AutoComplete().Name("search")
-                    .Filter(FilterType.StartsWith)
-                    .Placeholder("Search for order...")
-                    .Template("<span data-order-id='${ data.OrderId }'>${ data.OrderNumber }</span>")
-                    .MinLength(3)
-                    .DataSource(dataSource => dataSource
-                        .Read(read =>
-                            read.Url("/api/Search/GetAutoCompleteSearchResults").Type(HttpVerbs.Get)
-                        )
-                        .ServerFiltering(true)
-                    )
-                    .DataTextField("OrderNumber")
-                    .Events(events => events.Select("window.SalesHub.SearchBox_Select")))
+                
+                @if (!(ViewBag.IsMaintenanceMode ?? false))
+                {
+                    @(Html.Kendo().AutoComplete().Name("search")
+                          .Filter(FilterType.StartsWith)
+                          .Placeholder("Search for order...")
+                          .Template("<span data-order-id='${ data.OrderId }'>${ data.OrderNumber }</span>")
+                          .MinLength(3)
+                          .DataSource(dataSource => dataSource
+                                .Read(read =>
+                                    read.Url("/api/Search/GetAutoCompleteSearchResults").Type(HttpVerbs.Get)
+                                )
+                                .ServerFiltering(true)
+                          )
+                          .DataTextField("OrderNumber")
+                          .Events(events => events.Select("window.SalesHub.SearchBox_Select")))
+                }
             </div>
         </header>
         <div id="body" class="content clearfix">

@@ -712,3 +712,27 @@ footer {
             color: #fff;
         }
 
+/* Maintenance Mode */
+.maintenance-mode {
+    -webkit-animation: maintenance-animation 2s infinite ease-in-out;
+    -moz-animation: maintenance-animation 2s infinite ease-in-out;
+    animation: maintenance-animation 2s infinite ease-in-out;
+    margin: auto;
+    padding: 200px 0;
+    text-align: center;
+}
+
+@-webkit-keyframes maintenance-animation {
+    from { -webkit-transform: rotateY(0) rotateZ(20deg); }
+    to { -webkit-transform: rotateY(360deg) rotateZ(20deg); }
+}
+
+@-moz-keyframes maintenance-animation {
+    from { -moz-transform: rotateY(0) rotateZ(20deg); }
+    to { -moz-transform: rotateY(360deg) rotateZ(20deg); }
+}
+
+@keyframes maintenance-animation {
+    from { transform: rotateY(0) rotateZ(20deg); }
+    to { transform: rotateY(360deg) rotateZ(20deg); }
+}
