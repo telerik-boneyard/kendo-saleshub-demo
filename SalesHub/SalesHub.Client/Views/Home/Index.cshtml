@@ -57,13 +57,13 @@
         .ToolBar(toolbar => toolbar.Template("<a id='createOrderButton' class='k-button k-button-icontext k-grid-add' href='#'>Create order</a>"))
         .Filterable()
         .Selectable(settings => settings.Mode(GridSelectionMode.Single))
-        .Pageable(builder => builder.PageSizes(new[] { 20, 30 }))
+        .Pageable(builder => builder.PageSizes(new[] { 10, 20 }))
         .DataSource(dataSource => dataSource
             .Ajax()
             .Read(builder => builder.Url("/api/CustomerOrders/GetOrdersForCustomer/").Type(HttpVerbs.Get))
             .Model(model => model.Id("OrderId"))
             .ServerOperation(true)
-            .PageSize(20)
+            .PageSize(10)
         ))
 </div>
 
