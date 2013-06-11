@@ -9,7 +9,7 @@
         var grid = $("#orderDetailsGrid").data("kendoGrid");
         var orderDetails = grid.editable.options.model;
         if (orderDetails.UnitWeight !== 0) {
-            orderDetails.set("Units", orderDetails.NetWeight / orderDetails.UnitWeight);
+            orderDetails.set("Units", Math.ceil(orderDetails.NetWeight / orderDetails.UnitWeight));
         }
     };
 
