@@ -26,7 +26,7 @@ namespace SalesHub.Client.UnitTests.Builders.CustomerPathBuilderTests
 
             var result = customerPathBuilder.BuildCustomerPath(sellingCompany, customer);
 
-            Assert.AreEqual("Test -> Customer", result);
+            Assert.AreEqual("Test &raquo; Customer", result);
         }
     }
 }
