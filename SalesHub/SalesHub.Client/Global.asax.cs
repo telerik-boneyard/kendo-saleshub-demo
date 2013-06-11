@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
@@ -17,13 +19,13 @@ namespace SalesHub.Client
 
     public class MvcApplication : HttpApplication
     {
-        private static DateTime _lastMaintenanceTime;
         private static bool _isInMaintenanceMode;
+
+        private const string CACHE_KEY = "SalesHubDbRecreateKey";
+        private const string CACHE_VALUE = "Recreate";
 
         protected void Application_Start()
         {
-            _lastMaintenanceTime = DateTime.Now;
-
             Database.SetInitializer<SalesHubDbContext>(new SalesHubDbInitializer());
 
             AreaRegistration.RegisterAllAreas();
@@ -32,6 +34,28 @@ namespace SalesHub.Client
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            ScheduleDatabaseRecreate();
+        }
+
+        private void ScheduleDatabaseRecreate()
+        {
+            DateTime timeToRun = DateTime.Now.AddHours(Double.Parse(ConfigurationManager.AppSettings["DatabaseRefreshTimeoutInHours"]));
+
+            HttpRuntime.Cache.Insert(CACHE_KEY, CACHE_VALUE, null, timeToRun, Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, (key, value, reason) => RecreateDatabase());
+        }
+
+        private void RecreateDatabase()
+        {
+            _isInMaintenanceMode = true;
+
+            var dbContext = new SalesHubDbContext();
+            dbContext.Database.Delete();
+            var initializer = new SalesHubDbInitializer();
+            initializer.InitializeDatabase(dbContext);
+
+            ScheduleDatabaseRecreate();
+            _isInMaintenanceMode = false;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -39,23 +63,6 @@ namespace SalesHub.Client
             if (_isInMaintenanceMode && Request.Url.AbsolutePath != "/Maintenance")
             {
                 Response.Redirect("~/Maintenance", true);
-            }
-
-            DateTime now = DateTime.Now;
-            if (now > _lastMaintenanceTime.AddHours(24))
-            {
-                _lastMaintenanceTime = now;
-                _isInMaintenanceMode = true;
-
-                Response.Redirect("~/Maintenance", false);
-                Response.Flush();
-
-                var dbContext = new SalesHubDbContext();
-                dbContext.Database.Delete();
-                var initializer = new SalesHubDbInitializer();
-                initializer.InitializeDatabase(dbContext);
-
-                _isInMaintenanceMode = false;
             }
         }
     }
