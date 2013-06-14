@@ -9,7 +9,7 @@ namespace SalesHub.Client.Builders
 
         public string BuildCustomerPath(SellingCompany sellingCompany, Customer customer)
         {
-            return String.Format(PATH_FORMAT, sellingCompany.Abbreviation, customer.CustomerName);
+            return String.Format(PATH_FORMAT, sellingCompany.CompanyName, customer.CustomerName);
         }
     }
 }

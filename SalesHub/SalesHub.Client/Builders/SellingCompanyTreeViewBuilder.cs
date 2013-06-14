@@ -38,7 +38,7 @@ namespace SalesHub.Client.Builders
         {
             var treeViewItem = new SellingCompanyTreeViewItem
                 {
-                    Text = sellingCompany.Abbreviation,
+                    Text = sellingCompany.CompanyName,
                     Expanded = true,
                     Items = new List<SellingCompanyTreeViewItem>()
                 };

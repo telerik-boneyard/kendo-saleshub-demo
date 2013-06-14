@@ -76,7 +76,7 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
 
             var companyNode = result.Items.First();
 
-            Assert.AreEqual(sellingCompany.Abbreviation, companyNode.Text);
+            Assert.AreEqual(sellingCompany.CompanyName, companyNode.Text);
             Assert.IsEmpty(companyNode.Items);
         }
 
@@ -112,7 +112,7 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
 
             var companyNode = result.Items.First();
 
-            Assert.AreEqual(sellingCompany.Abbreviation, companyNode.Text);
+            Assert.AreEqual(sellingCompany.CompanyName, companyNode.Text);
             Assert.AreEqual(1, companyNode.Items.Count);
 
             var grouping = companyNode.Items.First();

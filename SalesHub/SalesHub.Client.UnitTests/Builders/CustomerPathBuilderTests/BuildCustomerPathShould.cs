@@ -12,21 +12,25 @@ namespace SalesHub.Client.UnitTests.Builders.CustomerPathBuilderTests
         [TestCase]
         public void ShouldReturnTheSellingCompanyAbbrFollowedByTheCustomerName()
         {
+            const string COMPANY_NAME = "Test Company";
+            const string CUSTOMER_NAME = "Customer";
+
             SellingCompany sellingCompany = new SellingCompany
             {
-                Abbreviation = "Test"
+                Abbreviation = "Test",
+                CompanyName = COMPANY_NAME
             };
 
             Customer customer = new Customer
             {
-                CustomerName = "Customer"
+                CustomerName = CUSTOMER_NAME
             };
 
             var customerPathBuilder = new CustomerPathBuilder();
 
             var result = customerPathBuilder.BuildCustomerPath(sellingCompany, customer);
 
-            Assert.AreEqual("Test &raquo; Customer", result);
+            Assert.AreEqual(COMPANY_NAME + " &raquo; " + CUSTOMER_NAME, result);
         }
     }
 }
