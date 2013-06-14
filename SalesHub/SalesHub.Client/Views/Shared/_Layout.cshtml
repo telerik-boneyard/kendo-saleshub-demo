@@ -27,10 +27,6 @@
         <!--[if lt IE 9]>
         <script src="@Url.Content("~/Scripts/libs/html5shiv.js")"></script>
         <![endif]-->
-
-        <script src="@Url.Content("~/Scripts/libs/jquery/jquery.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/libs/kendo/kendo.web.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/libs/kendo/kendo.aspnetmvc.min.js")"></script>
     </head>
     <body>
         <header>
@@ -52,7 +48,7 @@
                                 .ServerFiltering(true)
                           )
                           .DataTextField("OrderNumber")
-                          .Events(events => events.Select("window.SalesHub.SearchBox_Select")))
+                          .Events(events => events.Select("window.SalesHub.SearchBox_Select")).Deferred())
                 }
             </div>
         </header>
@@ -100,10 +96,10 @@
                         .ServerOperation(true)
                     )
                     .Selectable()
-                    .Events(events => events.Change("window.SalesHub.SearchResultsGrid_Change"))
+                    .Events(events => events.Change("window.SalesHub.SearchResultsGrid_Change")).Deferred()
                 )
             </text>)
-            .Events(e => e.Open("window.SalesHub.SearchResultWindow_Open"))
+            .Events(e => e.Open("window.SalesHub.SearchResultWindow_Open")).Deferred()
         )
 
         <script>
@@ -113,9 +109,12 @@
                 }
             };
         </script>
+        <script src="@Url.Content("~/Scripts/libs/jquery/jquery.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/libs/kendo/kendo.web.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/libs/kendo/kendo.aspnetmvc.min.js")"></script>
+        @Html.Kendo().DeferredScripts()
         <script src="@Url.Content("~/Scripts/search.js")"></script>
         <script src="@Url.Content("~/Scripts/header.js")"></script>
-
         @RenderSection("scripts", required: false)
     </body>
 </html>

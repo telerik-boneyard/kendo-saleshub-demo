@@ -157,8 +157,8 @@
                             .Server()
                             .Model(model => model.Id(m => m.SuggestedValueId)))
                         .Selectable()
-                        .Events(events => events.Change("window.SalesHub.SuggestedValuesGrid_Changed")))
-                    </text>))
+                        .Events(events => events.Change("window.SalesHub.SuggestedValuesGrid_Changed")).Deferred())
+                    </text>).Deferred())
             </div>
         </li>
         <li>
