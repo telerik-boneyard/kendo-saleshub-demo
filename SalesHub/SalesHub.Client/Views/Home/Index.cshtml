@@ -49,7 +49,7 @@
             columns.Bound(p => p.OrderNumber).Title("Order Number");
             columns.Bound(p => p.OrderDate).Title("Order Date").Format("{0:d}");
             columns.Bound(p => p.IsActive).Title("Status").ClientTemplate("#= IsActive ? 'Active' : 'Inactive' #");
-            columns.Bound(p => p.Weight).Title("Weight").Format("{0:n}");
+            columns.Bound(p => p.Weight).Title("Weight").ClientTemplate("#= kendo.format('{0:n} {1}', Weight, IsInKilograms ? 'kg' : 'lbs') #");
             columns.Bound(p => p.Value).Title("Value").Format("{0:c}");
             columns.Template(model => null)
                 .ClientTemplate("<a href='" + Url.RouteUrl("Default", new { controller = "Order", action = "Edit" }) + "/#= OrderId #'>Edit</a>");

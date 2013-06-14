@@ -29,7 +29,8 @@ namespace SalesHub.Client.Api
                 OrderId = o.OrderId,
                 OrderNumber = o.OrderNumber,
                 Value = o.ContractAmount,
-                Weight = o.ContractWeight
+                Weight = o.ContractWeight,
+                IsInKilograms = o.UnitOfWeight == UnitOfWeight.Kilograms
             }); 
             return Json(response, JsonRequestBehavior.AllowGet);
         }

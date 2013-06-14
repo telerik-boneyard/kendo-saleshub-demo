@@ -110,6 +110,7 @@ namespace SalesHub.Client.Controllers
             }
             if (!ModelState.IsValid)
             {
+                orderViewModel.IsNew = true;
                 SetViewModelFields(orderViewModel, id);
                 return View(orderViewModel);
             }

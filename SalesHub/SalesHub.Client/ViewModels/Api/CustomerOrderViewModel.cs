@@ -11,5 +11,6 @@ namespace SalesHub.Client.ViewModels.Api
         public string OrderNumber { get; set; }
         public bool IsActive { get; set; }
         public DateTime OrderDate { get; set; }
+        public bool IsInKilograms { get; set; }
     }
 }
