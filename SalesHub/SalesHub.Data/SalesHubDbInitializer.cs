@@ -144,6 +144,7 @@ namespace SalesHub.Data
                     Customer = customer,
                     PaymentTerm1 = paymentTerm,
                     IsActive = true,
+                    UnitOfWeight = customer.Region == "North America" ? UnitOfWeight.Pounds : UnitOfWeight.Kilograms,
                     OrderDate = DateTime.Today,
                     OrderNumber = "Order - " + i,
                 };
