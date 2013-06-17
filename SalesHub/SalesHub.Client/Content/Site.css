@@ -725,7 +725,7 @@ footer {
     #body {
         width: 100%;
     }
-    .left-column, .right-column {
+    .left-column.editorder, .right-column:not(.customer-grid) {
         float: none;
         clear: both;
         width: 100%;
