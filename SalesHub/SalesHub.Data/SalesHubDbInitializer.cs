@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using SalesHub.Core.Models;
+using SalesHub.Core.Repositories;
+using SalesHub.Data.Repositories;
 
 namespace SalesHub.Data
 {
     public class SalesHubDbInitializer : DropCreateDatabaseAlways<SalesHubDbContext>
     {
         private readonly Random _random = new Random();
+        private readonly IOriginRepository _originRepository = new OriginRepository();
 
         protected override void Seed(SalesHubDbContext context)
         {
@@ -112,9 +115,10 @@ namespace SalesHub.Data
             }
             context.SaveChanges();
 
+            var origins = _originRepository.GetAllOrigins().ToList();
             foreach (var order in orders)
             {
-                var orderDetails = GenerateOrderDetailsForOrder(order, context);
+                var orderDetails = GenerateOrderDetailsForOrder(order, context, origins);
 
                 order.ContractAmount = orderDetails.Sum(od => od.PricePerUnitOfWeight * od.Units);
                 order.ContractWeight = orderDetails.Sum(od => od.Units * od.UnitWeight);
@@ -156,20 +160,21 @@ namespace SalesHub.Data
             }
         }
 
-        private List<OrderDetail> GenerateOrderDetailsForOrder(Order order, SalesHubDbContext context)
+        private List<OrderDetail> GenerateOrderDetailsForOrder(Order order, SalesHubDbContext context, IList<string> origins)
         {
             var orderDetails = new List<OrderDetail>();
             var numToGenerate = _random.Next(2, 10);
+            int originIndex = _random.Next(0, origins.Count);
             for (int i = 0; i < numToGenerate; i++)
             {
                 var orderDetail = new OrderDetail
                 {
+                    Origin = origins[originIndex],
                     PricePerUnitOfWeight = _random.Next(4, 100),
                     CropYear = _random.Next(2002, 2013),
                     Destination = "",
                     LotNumber = "",
                     OrderId = order.OrderId,
-                    Origin = "",
                     PackageTypeId = _random.Next(1, context.PackageTypes.Count()),
                     UnitWeight = _random.Next(10, 20),
                     Units = _random.Next(2000, 6000),
