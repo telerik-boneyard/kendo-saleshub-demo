@@ -71,29 +71,30 @@ namespace SalesHub.Data
 
         private void GenerateCustomersForCompany(SellingCompany sellingCompany, SalesHubDbContext context)
         {
-            string [] customerNames = new[]
-                {
-                "Around the Horn",
-                "Blauer See Delikatessen",
-                "Bottom-Dollar Markets",
-                "Chop-suey Chinese",
-                "Eastern Connection",
-                "Godos Cocina Típica",
-                "Lazy K Kountry Store",
-                "Let's Stop N Shop",
-                "Santé Gourmet",
-                "Save-a-lot Markets",
-                "Suprêmes délices",
-                "The Big Cheese",
-                "The Cracker Box"
+            Tuple<string, string>[] customerSeedData = new[]
+            {
+                new Tuple<string, string>("Around the Horn", "North America"),
+                new Tuple<string, string>("Blauer See Delikatessen", "Europe"),
+                new Tuple<string, string>("Bottom-Dollar Markets", "North America"),
+                new Tuple<string, string>("Chop-suey Chinese", "Asia"),
+                new Tuple<string, string>("Eastern Connection", "North America"),
+                new Tuple<string, string>("Godos Cocina Típica", "South America"),
+                new Tuple<string, string>("Lazy K Kountry Store", "North America"),
+                new Tuple<string, string>("Let's Stop N Shop", "North America"),
+                new Tuple<string, string>("Santé Gourmet", "Europe"),
+                new Tuple<string, string>("Save-a-lot Markets", "North America"),
+                new Tuple<string, string>("Suprêmes délices", "Europe"),
+                new Tuple<string, string>("The Big Cheese", "North America"),
+                new Tuple<string, string>("The Cracker Box", "North America")
             };
 
             var customers = new List<Customer>();
-            foreach (string customerName in customerNames)
+            foreach (var customerData in customerSeedData)
             {
                 var customer = new Customer
                 {
-                    CustomerName = customerName,
+                    CustomerName = customerData.Item1,
+                    Region = customerData.Item2,
                     SellingCompany = sellingCompany,
                     Orders = new List<Order>()
                 };

@@ -91,6 +91,7 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
                 {
                     CustomerId = 1,
                     CustomerName = "A - Customer 1",
+                    Region = "North America",
                     SellingCompany = sellingCompany
                 };
             var customers = new [] {customer};
@@ -117,7 +118,7 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
 
             var grouping = companyNode.Items.First();
 
-            Assert.AreEqual("A", grouping.Text);
+            Assert.AreEqual(customer.Region, grouping.Text);
             Assert.AreEqual(1, grouping.Items.Count);
 
             var customerNode = grouping.Items.First();
@@ -137,6 +138,7 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             {
                 CustomerId = 1,
                 CustomerName = "A - Customer 1",
+                Region = "North America",
                 SellingCompany = sellingCompany
             };
             var customers = new [] { customer };
@@ -170,6 +172,7 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             {
                 CustomerId = 1,
                 CustomerName = "A - Customer 1",
+                Region = "North America",
                 SellingCompany = sellingCompany
             };
 
@@ -177,6 +180,7 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             {
                 CustomerId = 2,
                 CustomerName = "B - Customer 2",
+                Region = "South America",
                 SellingCompany = sellingCompany
             };
 
@@ -197,8 +201,8 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
 
             var groups = result.Items.First().Items.ToList();
 
-            Assert.AreEqual("A", groups[0].Text);
-            Assert.AreEqual("B", groups[1].Text);
+            Assert.AreEqual(customer.Region, groups[0].Text);
+            Assert.AreEqual(customer2.Region, groups[1].Text);
         }
     }
 }

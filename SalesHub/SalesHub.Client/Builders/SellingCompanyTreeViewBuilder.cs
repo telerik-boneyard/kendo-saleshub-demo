@@ -44,7 +44,7 @@ namespace SalesHub.Client.Builders
                 };
 
             var customersForCompany = _customerRepository.GetCustomersForSellingCompany(sellingCompany.SellingCompanyId)
-                .GroupBy(c => c.CustomerName.Substring(0, 1).ToUpper())
+                .GroupBy(c => c.Region)
                 .OrderBy(c => c.Key);
 
             foreach (var grouping in customersForCompany)
