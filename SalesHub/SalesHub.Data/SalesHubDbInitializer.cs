@@ -73,11 +73,9 @@ namespace SalesHub.Data
         {
             Tuple<string, string>[] customerSeedData = new[]
             {
-                new Tuple<string, string>("Around the Horn", "North America"),
                 new Tuple<string, string>("Blauer See Delikatessen", "Europe"),
                 new Tuple<string, string>("Bottom-Dollar Markets", "North America"),
-                new Tuple<string, string>("Chop-suey Chinese", "Asia"),
-                new Tuple<string, string>("Eastern Connection", "North America"),
+                new Tuple<string, string>("Chop-suey Chinese", "North America"),
                 new Tuple<string, string>("Godos Cocina Típica", "South America"),
                 new Tuple<string, string>("Lazy K Kountry Store", "North America"),
                 new Tuple<string, string>("Let's Stop N Shop", "North America"),
@@ -85,7 +83,10 @@ namespace SalesHub.Data
                 new Tuple<string, string>("Save-a-lot Markets", "North America"),
                 new Tuple<string, string>("Suprêmes délices", "Europe"),
                 new Tuple<string, string>("The Big Cheese", "North America"),
-                new Tuple<string, string>("The Cracker Box", "North America")
+                new Tuple<string, string>("The Cracker Box", "North America"),
+                new Tuple<string, string>("Okudacho Sushi", "Asia"),
+                new Tuple<string, string>("Oyucho Japanese Cuisine", "Asia"),
+                new Tuple<string, string>("LuLu Hypermarket", "Middle East")
             };
 
             var customers = new List<Customer>();
