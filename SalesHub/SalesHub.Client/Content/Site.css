@@ -402,6 +402,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     background: #eee;
     padding: 0;
+    min-width: 680px;
 }
 
 /* Icon Font*/
@@ -576,7 +577,7 @@ header .sub-heading .page-title {
     background-image: none;
 }
 
-k-dropdown-wrap {
+.k-dropdown-wrap {
     background-image: none;
 }
 
@@ -715,3 +716,37 @@ footer {
             background: #CC2A41;
             color: #fff;
         }
+
+
+
+@media (max-width: 1130px) {
+    body>header>h1,
+    body>header>.sub-heading,
+    #body {
+        width: 100%;
+    }
+    .left-column, .right-column {
+        float: none;
+        clear: both;
+        width: 100%;
+    }
+    .left-column.editorder > div {
+        display: block;
+        float: left;
+        width: 15em;
+        height: 3.0em;
+    }
+    .left-column.editorder > div > label[for*=_UnitOfWeight_] {
+        display: block;
+        position: absolute;
+        padding-left: 1em;
+    }
+    .left-column.editorder > div > input[type=radio] {
+        margin-top: 0.2em;
+        display: block;
+    }
+    #orderDetailsGrid .k-grid-edit .command,
+    #orderDetailsGrid .k-grid-delete .command {
+        display: none;
+    }
+}
