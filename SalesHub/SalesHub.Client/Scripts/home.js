@@ -52,7 +52,6 @@
         treeView.select(selectedCustomerLi);
         treeView.expand(selectedCustomerLi.parent());
 
-        debugger;
         window.SalesHub.setSelectedCustomer(selectedCustomerLi.data("customerId"), selectedCustomerLi.text());
 
         updateGridCustomerFilter(selectedCustomerLi.data("customer-id"));
