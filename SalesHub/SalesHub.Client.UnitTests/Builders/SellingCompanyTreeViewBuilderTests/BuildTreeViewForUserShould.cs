@@ -40,11 +40,8 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             user.SellingCompanies = new List<SellingCompany>();
 
             var mockCustomerRepository = Mock.Create<ICustomerRepository>();
-            var mockCustomerPathBuilder = Mock.Create<ICustomerPathBuilder>();
 
-            Mock.Arrange(() => mockCustomerPathBuilder.BuildCustomerPath(Arg.IsAny<SellingCompany>(), Arg.IsAny<Customer>())).Returns("Test path");
-
-            var sellingCompanyTreeViewBuilder = new SellingCompanyTreeViewBuilder(mockCustomerRepository, mockCustomerPathBuilder);
+            var sellingCompanyTreeViewBuilder = new SellingCompanyTreeViewBuilder(mockCustomerRepository);
 
             var result = sellingCompanyTreeViewBuilder.BuildTreeViewForUser(user);
 
@@ -60,17 +57,14 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             user.SellingCompanies = new List<SellingCompany> { sellingCompany };
 
             var mockCustomerRepository = Mock.Create<ICustomerRepository>();
-            var mockCustomerPathBuilder = Mock.Create<ICustomerPathBuilder>();
 
             Mock.Arrange(() => mockCustomerRepository.GetCustomersForSellingCompany(sellingCompany.SellingCompanyId)).Returns(new List<Customer>());
-            Mock.Arrange(() => mockCustomerPathBuilder.BuildCustomerPath(Arg.IsAny<SellingCompany>(), Arg.IsAny<Customer>())).OccursNever();
 
-            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository, mockCustomerPathBuilder);
+            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository);
 
             var result = builder.BuildTreeViewForUser(user);
 
             Mock.AssertAll(mockCustomerRepository);
-            Mock.AssertAll(mockCustomerPathBuilder);
 
             Assert.AreEqual(1, result.Items.Count);
 
@@ -97,16 +91,13 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             var customers = new [] {customer};
 
             var mockCustomerRepository = Mock.Create<ICustomerRepository>();
-            var mockCustomerPathBuilder = Mock.Create<ICustomerPathBuilder>();
 
             Mock.Arrange(() => mockCustomerRepository.GetCustomersForSellingCompany(sellingCompany.SellingCompanyId)).Returns(customers);
-            Mock.Arrange(() => mockCustomerPathBuilder.BuildCustomerPath(Arg.IsAny<SellingCompany>(), Arg.IsAny<Customer>())).Returns("Test path");
 
-            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository, mockCustomerPathBuilder);
+            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository);
 
             var result = builder.BuildTreeViewForUser(user);
 
-            Mock.AssertAll(mockCustomerPathBuilder);
             Mock.AssertAll(mockCustomerRepository);
 
             Assert.AreEqual(1, result.Items.Count);
@@ -144,11 +135,10 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             var customers = new [] { customer };
 
             var mockCustomerRepository = Mock.Create<ICustomerRepository>();
-            var mockCustomerPathBuilder = Mock.Create<ICustomerPathBuilder>();
 
             Mock.Arrange(() => mockCustomerRepository.GetCustomersForSellingCompany(sellingCompany.SellingCompanyId)).Returns(customers);
 
-            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository, mockCustomerPathBuilder);
+            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository);
 
             var result = builder.BuildTreeViewForUser(user);
 
@@ -187,16 +177,13 @@ namespace SalesHub.Client.UnitTests.Builders.SellingCompanyTreeViewBuilderTests
             var customers = new [] { customer, customer2 };
 
             var mockCustomerRepository = Mock.Create<ICustomerRepository>();
-            var mockCustomerPathBuilder = Mock.Create<ICustomerPathBuilder>();
 
             Mock.Arrange(() => mockCustomerRepository.GetCustomersForSellingCompany(sellingCompany.SellingCompanyId)).Returns(customers);
-            Mock.Arrange(() => mockCustomerPathBuilder.BuildCustomerPath(Arg.IsAny<SellingCompany>(), Arg.IsAny<Customer>())).Returns("Test -> path").Occurs(2);
 
-            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository, mockCustomerPathBuilder);
+            var builder = new SellingCompanyTreeViewBuilder(mockCustomerRepository);
 
             var result = builder.BuildTreeViewForUser(user);
 
-            Mock.AssertAll(mockCustomerPathBuilder);
             Mock.AssertAll(mockCustomerRepository);
 
             var groups = result.Items.First().Items.ToList();

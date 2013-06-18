@@ -211,9 +211,7 @@
     <Compile Include="ViewModels\Api\OrderNoteViewModel.cs" />
     <Compile Include="ViewModels\Client\CustomerOrdersViewModel.cs" />
     <Compile Include="Builders\CurrencyTypeSelectListBuilder.cs" />
-    <Compile Include="Builders\CustomerPathBuilder.cs" />
     <Compile Include="Builders\ICurrencyTypeSelectListBuilder.cs" />
-    <Compile Include="Builders\ICustomerPathBuilder.cs" />
     <Compile Include="Builders\IPaymentTermTypeSelectListBuilder.cs" />
     <Compile Include="Builders\ISellingCompanyTreeViewBuilder.cs" />
     <Compile Include="Builders\PaymentTermTypeSelectListBuilder.cs" />

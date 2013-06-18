@@ -14,7 +14,6 @@ namespace SalesHub.Client.Controllers
         private readonly IOrderRepository _orderRepository;
         private readonly ICustomerRepository _customerRepository;
         private readonly IPaymentTermProcessor _paymentTermProcessor;
-        private readonly ICustomerPathBuilder _customerPathBuilder;
         private readonly IOrderViewModelSelectListBuilder _orderViewModelSelectListBuilder;
         private readonly IOrderViewDataBuilder _orderViewDataBuilder;
         private readonly IConverter<OrderViewModel, Order> _orderViewModelConverter;
@@ -23,7 +22,6 @@ namespace SalesHub.Client.Controllers
         public OrderController(IOrderRepository orderRepository,
             ICustomerRepository customerRepository,
             IPaymentTermProcessor paymentTermProcessor,
-            ICustomerPathBuilder customerPathBuilder,
             IOrderViewModelSelectListBuilder orderViewModelSelectListBuilder,
             IOrderViewDataBuilder orderViewDataBuilder,
             IConverter<OrderViewModel, Order> orderViewModelConverter,
@@ -32,7 +30,6 @@ namespace SalesHub.Client.Controllers
             _orderRepository = orderRepository;
             _customerRepository = customerRepository;
             _paymentTermProcessor = paymentTermProcessor;
-            _customerPathBuilder = customerPathBuilder;
             _orderViewModelSelectListBuilder = orderViewModelSelectListBuilder;
             _orderViewDataBuilder = orderViewDataBuilder;
             _orderViewModelConverter = orderViewModelConverter;
@@ -163,9 +160,7 @@ namespace SalesHub.Client.Controllers
 
         private void SetViewModelFields(OrderViewModel viewModel, int customerId)
         {
-            Customer customer = _customerRepository.GetCustomerById(customerId);
             viewModel.CustomerId = customerId;
-            viewModel.CustomerPath = _customerPathBuilder.BuildCustomerPath(customer.SellingCompany, customer);
             viewModel.SuggestedValues = _suggestedValueRepository.GetAllSuggestedValues();
             viewModel.Customer = _customerRepository.GetCustomerById(viewModel.CustomerId);
             _orderViewModelSelectListBuilder.BuildSelectListsForOrderViewModel(viewModel);

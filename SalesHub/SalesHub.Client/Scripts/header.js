@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    window.SalesHub.setCustomerPath = function(customerPath) {
-        $(".customerPath").html(customerPath);
+    window.SalesHub.setSelectedCustomer = function(customerId, customerName) {
+        $(".customerPath a").attr('href', '/?customerId=' + customerId).html(customerName);
     };
 })();

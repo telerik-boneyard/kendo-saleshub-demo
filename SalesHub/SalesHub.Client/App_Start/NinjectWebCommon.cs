@@ -68,7 +68,6 @@ namespace SalesHub.Client.App_Start
 
             kernel.Bind<ISalesHubDbContext>().To<SalesHubDbContext>().InThreadScope();
             kernel.Bind<ISellingCompanyTreeViewBuilder>().To<SellingCompanyTreeViewBuilder>();
-            kernel.Bind<ICustomerPathBuilder>().To<CustomerPathBuilder>();
             kernel.Bind<ICurrencyTypeSelectListBuilder>().To<CurrencyTypeSelectListBuilder>();
             kernel.Bind<IPaymentTermTypeSelectListBuilder>().To<PaymentTermTypeSelectListBuilder>();
             kernel.Bind<ICreditTermDurationSelectListBuilder>().To<CreditTermDurationSelectListBuilder>();

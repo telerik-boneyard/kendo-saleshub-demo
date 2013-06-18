@@ -9,12 +9,10 @@ namespace SalesHub.Client.Builders
     public class SellingCompanyTreeViewBuilder : ISellingCompanyTreeViewBuilder
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly ICustomerPathBuilder _customerPathBuilder;
 
-        public SellingCompanyTreeViewBuilder(ICustomerRepository customerRepository, ICustomerPathBuilder customerPathBuilder)
+        public SellingCompanyTreeViewBuilder(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
-            _customerPathBuilder = customerPathBuilder;
         }
 
         public SellingCompanyTreeViewRoot BuildTreeViewForUser(User user)
@@ -68,8 +66,7 @@ namespace SalesHub.Client.Builders
                 treeViewItem.Items.Add(new SellingCompanyTreeViewItem
                 {
                     CustomerId = customer.CustomerId,
-                    Text = customer.CustomerName,
-                    Path = _customerPathBuilder.BuildCustomerPath(sellingCompany, customer)
+                    Text = customer.CustomerName
                 });
             }
 

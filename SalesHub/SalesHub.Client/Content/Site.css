@@ -472,6 +472,10 @@ header h1 a {
         display: inline-block;
         padding: 1%;
     }
+        .sub-heading h2 a {
+            text-decoration: none;
+            color: #fff;
+        }
     .sub-heading .k-widget { margin: 1%; }
 
 header .title-search {

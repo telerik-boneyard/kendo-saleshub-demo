@@ -50,7 +50,7 @@
     $(document).ready(function() {
         var customerData = window.SalesHub.customerData;
 
-        window.SalesHub.setCustomerPath(customerData.customerPath);
+        window.SalesHub.setSelectedCustomer(customerData.customerId, customerData.customerName);
 
         $(".actionButton").on("click", function(e) {
             window.location.href = $(e.target).data("action");

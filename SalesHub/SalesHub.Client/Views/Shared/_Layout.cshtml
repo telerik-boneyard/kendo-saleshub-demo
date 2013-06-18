@@ -32,8 +32,8 @@
         <header>
             <h1><a href="@Url.RouteUrl("Default", new { controller = "Home", action = "Index" })">SalesHub</a></h1>
             <div class="sub-heading clearfix">
-                <h2 class="customerPath"></h2>
-                
+                <h2 class="customerPath"><a href="#"></a></h2>
+
                 @if (!(ViewBag.IsMaintenanceMode ?? false))
                 {
                     @(Html.Kendo().AutoComplete().Name("search")

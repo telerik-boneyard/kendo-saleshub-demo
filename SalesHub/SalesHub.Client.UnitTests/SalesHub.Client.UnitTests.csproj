@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\CurrencyTypeSelectListBuilderTests\BuildSelectListItemsForCurrencyTypesShould.cs" />
-    <Compile Include="Builders\CustomerPathBuilderTests\BuildCustomerPathShould.cs" />
     <Compile Include="Builders\OrderViewDataBuilderTests\BuildViewDataShould.cs" />
     <Compile Include="Builders\SellingCompanyTreeViewBuilderTests\BuildTreeViewForUserShould.cs" />
     <Compile Include="Converters\OrderViewModelConverterTests\ConvertShould.cs" />

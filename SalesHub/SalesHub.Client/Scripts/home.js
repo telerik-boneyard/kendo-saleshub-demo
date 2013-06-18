@@ -23,11 +23,13 @@
     window.SalesHub.CustomerTreeView_Select = function (e) {
         var node = $(e.node);
         var dataItem = e.sender.dataItem(e.node);
+        var customerId;
 
         if (!dataItem.hasChildren) {
-            window.SalesHub.setCustomerPath(node.data("path"));
-            updateGridCustomerFilter(node.data("customer-id"));
-            window.SalesHub.selectedCustomerId = node.data("customer-id");
+            customerId = node.data("customer-id");
+            window.SalesHub.setSelectedCustomer(customerId, node.text());
+            updateGridCustomerFilter(customerId);
+            window.SalesHub.selectedCustomerId = customerId;
         }
     };
 
@@ -50,7 +52,8 @@
         treeView.select(selectedCustomerLi);
         treeView.expand(selectedCustomerLi.parent());
 
-        window.SalesHub.setCustomerPath(selectedCustomerLi.data("path"));
+        debugger;
+        window.SalesHub.setSelectedCustomer(selectedCustomerLi.data("customerId"), selectedCustomerLi.text());
 
         updateGridCustomerFilter(selectedCustomerLi.data("customer-id"));
         window.SalesHub.selectedCustomerId = selectedCustomerLi.data("customer-id");
