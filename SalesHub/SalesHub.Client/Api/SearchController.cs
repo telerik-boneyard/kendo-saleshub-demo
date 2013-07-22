@@ -19,17 +19,22 @@ namespace SalesHub.Client.Api
             _salesHubDbContext = salesHubDbContext;
         }
 
-        public JsonResult GetAutoCompleteSearchResults([DataSourceRequest] DataSourceRequest dataSourceRequest)
+        public JsonResult GetAutoCompleteSearchResults(string text)
         {
-            dataSourceRequest.PageSize = 20;
-            var result = _salesHubDbContext.Orders.Include("Customer").Include("Customer.SellingCompany").ToDataSourceResult(dataSourceRequest, o => new OrderSearchResult
+            var result = _salesHubDbContext.Orders.Include("Customer").Include("Customer.SellingCompany").Select(o => new OrderSearchResult
             {
                 OrderId = o.OrderId,
                 OrderNumber = o.OrderNumber,
                 Customer = o.Customer.CustomerName,
                 SellingCompany = o.Customer.SellingCompany.Abbreviation
             });
-            return Json(result.Data, JsonRequestBehavior.AllowGet);
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                result = result.Where(o => o.OrderNumber.StartsWith(text));
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetSearchResults([DataSourceRequest] DataSourceRequest dataSourceRequest)

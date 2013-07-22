@@ -43,7 +43,7 @@
                           .MinLength(3)
                           .DataSource(dataSource => dataSource
                                 .Read(read =>
-                                    read.Url("/api/Search/GetAutoCompleteSearchResults").Type(HttpVerbs.Get)
+                                    read.Url("/api/Search/GetAutoCompleteSearchResults").Type(HttpVerbs.Get).Data("onAdditionalData")
                                 )
                                 .ServerFiltering(true)
                           )
@@ -51,6 +51,13 @@
                           .Events(events => events.Select("window.SalesHub.SearchBox_Select")).Deferred())
                 }
             </div>
+            <script>
+                function onAdditionalData(e) {
+                    return {
+                        text: $("#search").val()
+                    };
+                }
+            </script>
         </header>
         <div id="body" class="content clearfix">
             @RenderBody()
