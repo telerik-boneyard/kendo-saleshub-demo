@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -14,14 +13,18 @@ namespace SalesHub.Client.ViewModels.Api
         public string Origin { get; set; }
 
         [DisplayName("Net Wt")]
+        [Range(0, 99999999.0)]
         public decimal NetWeight { get; set; }
 
         [DisplayName("Unit Weight")]
+        [Range(0, 99999999.0)]
         public decimal UnitWeight { get; set; }
 
+        [Range(0, int.MaxValue)]
         public int Units { get; set; }
 
         [DisplayName("Price")]
+        [Range(0, 99999999.0)]
         public decimal PricePerUnitOfWeight { get; set; }
 
         [DisplayName("Value Date")]
