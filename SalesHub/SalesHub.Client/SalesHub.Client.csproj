@@ -260,7 +260,6 @@
     <Content Include="Fonts\iconic.woff" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\Prod.pubxml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Images\kendo-logo.png" />
     <Content Include="Images\logo.png" />
