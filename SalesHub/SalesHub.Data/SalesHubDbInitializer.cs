@@ -8,10 +8,15 @@ using SalesHub.Data.Repositories;
 
 namespace SalesHub.Data
 {
-    public class SalesHubDbInitializer : DropCreateDatabaseAlways<SalesHubDbContext>
+    public class SalesHubDbInitializer : CreateDatabaseIfNotExists<SalesHubDbContext>
     {
         private readonly Random _random = new Random();
         private readonly IOriginRepository _originRepository = new OriginRepository();
+
+        public void Reseed(SalesHubDbContext context)
+        {
+            this.Seed(context);
+        }
 
         protected override void Seed(SalesHubDbContext context)
         {

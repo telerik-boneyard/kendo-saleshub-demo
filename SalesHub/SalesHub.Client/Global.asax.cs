@@ -48,10 +48,16 @@ namespace SalesHub.Client
         {
             _isInMaintenanceMode = true;
 
-            var dbContext = new SalesHubDbContext();
-            dbContext.Database.Delete();
-            var initializer = new SalesHubDbInitializer();
-            initializer.InitializeDatabase(dbContext);
+            try
+            {
+                var dbContext = new SalesHubDbContext();
+                dbContext.TruncateData();
+                var initializer = new SalesHubDbInitializer();
+                initializer.Reseed(dbContext);
+            }
+            catch (Exception ex)
+            {
+            }
 
             ScheduleDatabaseRecreate();
             _isInMaintenanceMode = false;

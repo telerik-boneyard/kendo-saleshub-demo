@@ -21,5 +21,34 @@ namespace SalesHub.Data
         {
             this.Configuration.ProxyCreationEnabled = false;
         }
+
+        public void TruncateData()
+        {
+            this.Database.ExecuteSqlCommand(@"
+                UPDATE Orders SET PaymentTerm1_PaymentTermId = NULL
+                UPDATE Orders SET PaymentTerm2_PaymentTermId = NULL;
+                DELETE FROM dbo.UserSellingCompanies
+                DELETE FROM dbo.OrderNotes
+                DBCC CHECKIDENT ('dbo.OrderNotes', RESEED, 0);
+                DELETE FROM dbo.OrderDetails
+                DBCC CHECKIDENT ('dbo.OrderDetails', RESEED, 0);
+                DELETE FROM dbo.PaymentTerms
+                DBCC CHECKIDENT ('dbo.PaymentTerms', RESEED, 0);
+                DELETE FROM dbo.PaymentTermTypes
+                DBCC CHECKIDENT ('dbo.PaymentTermTypes', RESEED, 0);
+                DELETE FROM dbo.Orders
+                DBCC CHECKIDENT ('dbo.Orders', RESEED, 0);
+                DELETE FROM dbo.Customers
+                DBCC CHECKIDENT ('dbo.Customers', RESEED, 0);
+                DELETE FROM dbo.SellingCompanies
+                DBCC CHECKIDENT ('dbo.SellingCompanies', RESEED, 0);
+                DELETE FROM dbo.Users
+                DBCC CHECKIDENT ('dbo.Users', RESEED, 0);
+                DELETE FROM dbo.CurrencyTypes
+                DBCC CHECKIDENT ('dbo.CurrencyTypes', RESEED, 0);
+                DELETE FROM dbo.PackageTypes
+                DBCC CHECKIDENT ('dbo.PackageTypes', RESEED, 0);
+            ");
+        }
     }
 }
