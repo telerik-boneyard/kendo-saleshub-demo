@@ -1,5 +1,6 @@
 ﻿@using System.Web.Mvc.Html;
 @using Kendo.Mvc.UI;
+@using SalesHub.Client.Configuration
 @using SalesHub.Client.Extensions;
 @using SalesHub.Core.Models;
 @using SalesHub.Client.ViewModels.Api;
@@ -79,10 +80,10 @@
                     .Events(events => events.Save("window.SalesHub.OrderDetailsGrid_Save"))
                     .DataSource(dataSource => dataSource
                         .Ajax()
-                        .Read(builder => builder.Url("/api/CustomerOrderDetails/GetOrderDetails/" + Model.OrderId).Type(HttpVerbs.Get))
-                        .Create(builder => builder.Url("/api/CustomerOrderDetails/CreateOrderDetail/" + Model.OrderId).Type(HttpVerbs.Put))
-                        .Update(builder => builder.Url("/api/CustomerOrderDetails/UpdateOrderDetail").Type(HttpVerbs.Post))
-                        .Destroy(builder => builder.Url("/api/CustomerOrderDetails/DeleteOrderDetail").Type(HttpVerbs.Delete))
+                        .Read(builder => builder.Url(SettingsManager.BaseServiceUrl + "/CustomerOrderDetails/GetOrderDetails/" + Model.OrderId).Type(HttpVerbs.Get))
+                        .Create(builder => builder.Url(SettingsManager.BaseServiceUrl + "/CustomerOrderDetails/CreateOrderDetail/" + Model.OrderId).Type(HttpVerbs.Put))
+                        .Update(builder => builder.Url(SettingsManager.BaseServiceUrl + "/CustomerOrderDetails/UpdateOrderDetail").Type(HttpVerbs.Post))
+                        .Destroy(builder => builder.Url(SettingsManager.BaseServiceUrl + "/CustomerOrderDetails/DeleteOrderDetail").Type(HttpVerbs.Delete))
                         .Model(model => {
                             model.Id(x => x.OrderDetailId);
                             model.Field(m => m.OrderDetailId).DefaultValue(0);
@@ -107,8 +108,8 @@
                     .ToolBar(toolbar => toolbar.Create())
                     .DataSource(dataSource => dataSource
                         .Ajax()
-                        .Read(builder => builder.Url("/api/OrderNotes/GetOrderNotesForOrder/" + Model.OrderId).Type(HttpVerbs.Get))
-                        .Create(builder => builder.Url("/api/OrderNotes/CreateOrderNote/" + Model.OrderId).Type(HttpVerbs.Put))
+                        .Read(builder => builder.Url(SettingsManager.BaseServiceUrl + "/OrderNotes/GetOrderNotesForOrder/" + Model.OrderId).Type(HttpVerbs.Get))
+                        .Create(builder => builder.Url(SettingsManager.BaseServiceUrl + "/OrderNotes/CreateOrderNote/" + Model.OrderId).Type(HttpVerbs.Put))
                         .Model(model =>
                         {
                             model.Id("OrderNoteId");
