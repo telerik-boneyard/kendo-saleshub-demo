@@ -224,6 +224,7 @@
     <Content Include="Fonts\iconic.ttf" />
     <Content Include="Fonts\iconic.woff" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\Prod.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Images\kendo-logo.png" />

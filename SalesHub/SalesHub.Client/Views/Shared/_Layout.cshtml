@@ -43,7 +43,7 @@
                           .MinLength(3)
                           .DataSource(dataSource => dataSource
                                 .Read(read =>
-                                    read.Url("/api/Search/GetAutoCompleteSearchResults").Type(HttpVerbs.Get).Data("onAdditionalData")
+                                    read.Url(SettingsManager.BaseServiceUrl + "/Search/GetAutoCompleteSearchResults").Type(HttpVerbs.Get).Data("onAdditionalData")
                                 )
                                 .ServerFiltering(true)
                           )
