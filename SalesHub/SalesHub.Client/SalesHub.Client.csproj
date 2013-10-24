@@ -183,7 +183,6 @@
     <Compile Include="Builders\ISellingCompanyTreeViewBuilder.cs" />
     <Compile Include="Builders\PaymentTermTypeSelectListBuilder.cs" />
     <Compile Include="Builders\SellingCompanyTreeViewBuilder.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -226,19 +225,12 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\Prod.pubxml" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Images\kendo-logo.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\search.png" />
     <Content Include="Images\telerik-logo.png" />
     <Content Include="Scripts\header.js" />
     <Content Include="Scripts\home.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\libs\html5shiv.js" />
     <Content Include="Scripts\libs\jquery\jquery.min.js" />
     <Content Include="Scripts\libs\kendo\kendo.aspnetmvc.min.js" />
@@ -254,7 +246,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\site.css" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
