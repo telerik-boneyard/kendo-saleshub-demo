@@ -4,7 +4,7 @@
     window.SalesHub.SearchBox_Select = function(e) {
         var actionUrl = window.SalesHub.Search.settings.actionUrl;
         var orderId = e.item.find("span").data("order-id");
-        window.location.pathname = actionUrl + "/" + orderId;
+        window.location.pathname = window.SalesHub.baseUrl + actionUrl + "/" + orderId;
     };
 
     window.SalesHub.SearchResultWindow_Open = function(e) {

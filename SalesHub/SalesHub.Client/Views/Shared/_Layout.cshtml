@@ -19,7 +19,7 @@
 
         <script type="text/javascript">
             window.SalesHub = window.SalesHub || {};
-            window.SalesHub.dataServiceUrl = "@SettingsManager.BaseServiceUrl";
+            window.SalesHub.baseUrl = '"@Url.Content("~/").TrimEnd('/')';
             window.SalesHub.viewModels = {};
             window.SalesHub.dataSources = {};
         </script>
